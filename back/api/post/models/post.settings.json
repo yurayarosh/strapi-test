@@ -11,7 +11,7 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "title": {
+    "title_ru": {
       "type": "string"
     },
     "img": {
@@ -28,10 +28,10 @@
     "alias": {
       "type": "string"
     },
-    "text": {
+    "text_ru": {
       "type": "richtext"
     },
-    "description": {
+    "description_ru": {
       "type": "text"
     },
     "title_uk": {

@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import SinglePage from '@/pages/_single-page'
 import SinglePost from '@/pages/_single-post'
-import Home from '@/pages/index'
-import Posts from '@/pages/posts'
 
 Vue.use(Router)
 
@@ -12,67 +11,28 @@ const langConfig = {
   default: 'ru',
 }
 
-let siteRoutes = [
-  {
-    name: 'home',
-    path: '/',
-    component: Home,
-    meta: {
-      language: langConfig.default,
-    },
-  },
-  {
-    name: 'posts',
-    path: '/posts',
-    component: Posts,
-    meta: {
-      language: langConfig.default,
-    },
-  },
-]
-
-langConfig.languages.forEach(lang => {
-  const { default: def } = langConfig
-  if (lang === def) return
-
-  const routes = []
-  const langName = lang === 'uk' ? 'ua' : lang
-
-  siteRoutes.forEach(({ name, path, component }) => {
-    name = `${name}-${lang}`
-    path = `/${langName}${path}`
-
-    routes.push({
-      name,
-      path,
-      component,
-      meta: {
-        language: lang,
-      },
-    })
-  })
-
-  siteRoutes = [...siteRoutes, ...routes]
-})
-
-const getPosts = async () => {
+const getRoutes = async (collection = 'pages', component) => {
   const { default: def, languages } = langConfig
-  const response = await fetch(`${process.env.BACKEND_HOST}/posts`)
-  const posts = await response.json()
+  const response = await fetch(`${process.env.BACKEND_HOST}/${collection}`)
+  const items = await response.json()
   const routes = []
 
-  languages.forEach(lang => {
-    posts.forEach(({ alias }) => {
-      const langName = lang === 'uk' ? 'ua' : lang
-      const subdir = lang === def ? '' : `/${langName}`
-      const name = lang === def ? alias : `${alias}-${langName}`
+  languages.forEach(language => {
+    items.forEach(({ alias, id }) => {
+      if (alias === null) alias = ''
+      const langName = language === 'uk' ? 'ua' : language
+      const subdir = language === def ? '' : `/${langName}`
+      let name = ''
+
+      if (alias) name = language === def ? alias : `${alias}-${langName}`
 
       routes.push({
         name,
+        component,
         path: `${subdir}/${alias}`,
-        component: SinglePost,
         meta: {
-          language: lang,
+          id,
+          language,
         },
       })
     })
@@ -84,9 +44,6 @@ const getPosts = async () => {
 export async function createRouter() {
   return new Router({
     mode: 'history',
-    routes: [
-      ...(await getPosts()),
-      ...siteRoutes,
-    ],
+    routes: [...(await getRoutes('pages', SinglePage)), ...(await getRoutes('posts', SinglePost))],
   })
 }

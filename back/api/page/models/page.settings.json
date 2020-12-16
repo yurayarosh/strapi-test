@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "name": "Static page",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "alias": {
+      "type": "string"
+    },
+    "title_ru": {
+      "type": "string"
+    },
+    "title_uk": {
+      "type": "string"
+    },
+    "description_ru": {
+      "type": "text"
+    },
+    "description_uk": {
+      "type": "text"
+    },
+    "plain_content": {
+      "type": "richtext"
+    },
+    "caption_ru": {
+      "type": "string"
+    },
+    "caption_uk": {
+      "type": "string"
+    }
+  }
+}

@@ -20,7 +20,7 @@ export default {
   mounted() {
     // console.log(this.$store.getters)
 
-    console.log(this.$route)
+    // console.log(this.$route)
     // console.log(this.$route)
   },
 }

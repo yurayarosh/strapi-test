@@ -13,6 +13,7 @@ import VBreadcrumbs from '@/components/VBreadcrumbs'
 import microdata from '@/mixins/microdata'
 
 export default {
+  name: 'page-home',
   components: {
     VInput,
     VBreadcrumbs,

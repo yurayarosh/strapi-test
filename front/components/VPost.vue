@@ -1,11 +1,16 @@
 <template>
   <nuxt-link :to="url" class="post">
-    <img :src="`${BACKEND_HOST}${img.formats.medium.url}`" alt="" class="post__img" />
+    <img
+      :src="`${BACKEND_HOST}${img.formats.medium.url}`"
+      :alt="img.alternativeText"
+      :title="img.caption"
+      class="post__img"
+    />
     <p class="post__title">{{ title }}</p>
 
-    <p v-if="shortText" class="post__text">{{ shortText }}</p>
+    <p v-if="description" class="post__text">{{ description }}</p>
 
-    <time v-if="date" :datetime="date">{{ date | formatDate }}</time>
+    <time v-if="date" :datetime="date">{{ date | formatDate(LANGUAGE) }}</time>
   </nuxt-link>
 </template>
 
@@ -25,7 +30,7 @@ export default {
       type: String,
       required: true,
     },
-    shortText: {
+    description: {
       type: String,
       default: '',
     },
@@ -37,6 +42,7 @@ export default {
   data() {
     return {
       BACKEND_HOST: process.env.BACKEND_HOST,
+      LANGUAGE: this.$route.meta.language,
     }
   },
 }

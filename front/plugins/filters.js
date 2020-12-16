@@ -1,7 +1,10 @@
 import Vue from 'vue'
-Vue.filter('formatDate', value => {
+
+Vue.filter('formatDate', (value, lang) => {
   const date = new Date(value)
-  return date.toLocaleString(['uk-UK'], {
+  const locale = `${lang.toLowerCase()}-${lang.toUpperCase()}`
+
+  return date.toLocaleString([locale], {
     month: 'short',
     day: '2-digit',
     year: 'numeric',

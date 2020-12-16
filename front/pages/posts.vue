@@ -3,12 +3,12 @@
     <v-breadcrumbs class="section__breadcrumbs" :list="breadcrumbs" />
 
     <ul v-if="isLoaded" class="posts">
-      <li v-for="(post, i) in posts" :key="i" class="posts__item">
+      <li v-for="post in posts" :key="post.id" class="posts__item">
         <v-post
           :url="post.alias"
-          :title="post.title"
+          :title="post[`title_${LANGUAGE}`]"
           :img="post.img"
-          :shortText="post.shortText"
+          :description="post[`description_${LANGUAGE}`]"
           :date="post.published_at"
         />
       </li>
@@ -22,11 +22,15 @@
 import microdata from '@/mixins/microdata'
 
 export default {
-  mixins: [microdata],
+  name: 'page-posts',
+  mixins: [
+    microdata,
+  ],
   data() {
     const { BASE_URL } = process.env
 
     return {
+      LANGUAGE: this.$route.meta.language,
       name: '',
       isLoaded: false,
       posts: null,
