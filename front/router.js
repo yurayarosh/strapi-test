@@ -3,13 +3,9 @@ import Router from 'vue-router'
 
 import SinglePage from '@/pages/_single-page'
 import SinglePost from '@/pages/_single-post'
+import { langConfig } from '@/assets/scripts/utils'
 
 Vue.use(Router)
-
-const langConfig = {
-  languages: ['ru', 'uk'],
-  default: 'ru',
-}
 
 const getRoutes = async (collection = 'pages', component) => {
   const { default: def, languages } = langConfig
@@ -24,7 +20,7 @@ const getRoutes = async (collection = 'pages', component) => {
       const subdir = language === def ? '' : `/${langName}`
       let name = ''
 
-      if (alias) name = language === def ? alias : `${alias}-${langName}`
+      if (alias) name = language === def ? alias : `${alias}---${langName}`
 
       routes.push({
         name,

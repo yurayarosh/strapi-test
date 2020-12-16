@@ -1,27 +1,29 @@
 <template>
   <header class="header">
-    <component
-      :is="isHome ? 'div' : 'nuxt-link'"
-      class="header__logo logo"
-      :to="!isHome ? homePath : false"
-      >logo</component
-    >
+    <div class="container">
+      <div class="header__inner">
+        <component
+          :is="isHome ? 'div' : 'nuxt-link'"
+          class="header__logo logo"
+          :to="!isHome ? homePath : false"
+          >logo</component
+        >
 
-    <v-nav class="header__nav" />
+        <v-nav class="header__nav" />
 
-    <v-lang class="header__lang" />
+        <v-lang class="header__lang" />
+      </div>
+    </div>
   </header>
 </template>
 
 <script>
 export default {
   name: 'VHeader',
-  data() {
-    return {
-      LANGUAGE: this.$route.meta.language,
-    }
-  },
   computed: {
+    LANGUAGE() {
+      return this.$route.meta.language
+    },
     isHome() {
       return !this.$route.name
     },
@@ -36,3 +38,14 @@ export default {
   mounted() {},
 }
 </script>
+
+<style lang="sass">
+.header
+  background-color: #ccc
+  
+  &__inner
+    display: flex
+    align-items: center
+    justify-content: space-between
+    height: 60px
+</style>

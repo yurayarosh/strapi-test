@@ -13,11 +13,14 @@ export default {
   name: 'VNav',
   data() {
     return {
-      LANGUAGE: this.$route.meta.language,
-      list: [],
+      // list: [],
+      pages: [],
     }
   },
   computed: {
+    LANGUAGE() {
+      return this.$route.meta.language
+    },
     isHome() {
       return !this.$route.name
     },
@@ -25,6 +28,17 @@ export default {
       if (this.LANGUAGE === 'uk') return '/ua/'
       if (this.LANGUAGE === 'ru') return '/'
       return `/${this.LANGUAGE}/`
+    },
+    list() {
+      if (this.pages.length > 0) {
+        return this.pages.map(page => {
+          return {
+            caption: page[`caption_${this.LANGUAGE}`],
+            alias: page.alias,
+          }
+        })
+      }
+      return []
     },
     filteredList() {
       if (this.isHome) return [...this.list.slice(1)]
@@ -36,17 +50,26 @@ export default {
       if (this.isHome && i === 0) return false
       return true
     },
+    async fetchNavList() {
+      await this.$store.dispatch('pages/fetchPages')
+
+      this.pages = this.$store.getters['pages/pages']
+    },
   },
   async mounted() {
-    await this.$store.dispatch('pages/fetchPages')
-
-    this.pages = this.$store.getters['pages/pages']
-    this.list = this.pages.map(page => {
-      return {
-        caption: page[`caption_${this.LANGUAGE}`],
-        alias: page.alias,
-      }
-    })
+    await this.fetchNavList()
   },
 }
 </script>
+
+<style lang="sass">
+.nav
+  &__list
+    display: flex
+    align-items: center
+    justify-content: center
+
+  &__item
+    padding-left: 10px
+    padding-right: 10px
+</style>

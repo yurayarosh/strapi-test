@@ -17,7 +17,7 @@ export default {
     page() {
       if (!this.$route.name) return 'home'
 
-      const [name] = this.$route.name.split('-')
+      const [name] = this.$route.name.split('---')
       return name
     },
   },
