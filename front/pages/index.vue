@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    {{ homePath }}
     <v-breadcrumbs :list="breadcrumbs" />
     <v-input v-model.trim="name" required type="text" label="" maxlength="20" name="name" />
 
@@ -11,32 +12,32 @@
 import VInput from '@/components/VInput'
 import VBreadcrumbs from '@/components/VBreadcrumbs'
 import microdata from '@/mixins/microdata'
+import homePath from '@/mixins/home-path'
 
 export default {
-  name: 'page-home',
+  name: 'PageHome',
   components: {
     VInput,
     VBreadcrumbs,
   },
-  mixins: [microdata],
+  mixins: [microdata, homePath],
   data() {
     return {
       name: '',
-      breadcrumbs: [
+    }
+  },
+  computed: {
+    breadcrumbs() {
+      return [
         {
-          url: 'https://example.com',
+          url: this.homePath,
           text: 'top page',
         },
         // {
         //   url: `https://example.com/foo${this.$router}`,
         //   text: 'foo',
         // }
-      ],
-    }
-  },
-  computed: {
-    trimmedName() {
-      return this.name.trim()
+      ]
     },
   },
 }

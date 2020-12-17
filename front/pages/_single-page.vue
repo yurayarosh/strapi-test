@@ -8,7 +8,7 @@ import PageHome from '@/pages/index'
 import PagePosts from '@/pages/posts'
 
 export default {
-  name: 'single-page',
+  name: 'SinglePage',
   components: {
     PageHome,
     PagePosts,

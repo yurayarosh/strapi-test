@@ -34,6 +34,10 @@
     },
     "caption_uk": {
       "type": "string"
+    },
+    "post": {
+      "via": "static_page",
+      "model": "post"
     }
   }
 }

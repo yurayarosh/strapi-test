@@ -22,7 +22,7 @@
 import microdata from '@/mixins/microdata'
 
 export default {
-  name: 'page-posts',
+  name: 'PagePosts',
   mixins: [
     microdata,
   ],
@@ -36,11 +36,11 @@ export default {
       posts: null,
       breadcrumbs: [
         {
-          url: `${BASE_URL}/`,
+          url: '/',
           text: 'top page',
         },
         {
-          url: `${BASE_URL}${this.$route.path}`,
+          url: this.$route.path,
           text: 'foo',
         },
       ],

@@ -18,21 +18,14 @@
 </template>
 
 <script>
+import homePath from '@/mixins/home-path'
+
 export default {
   name: 'VHeader',
+  mixins: [homePath],
   computed: {
-    LANGUAGE() {
-      return this.$route.meta.language
-    },
     isHome() {
       return !this.$route.name
-    },
-    homePath() {
-      let subfolder = this.LANGUAGE === 'ru' ? '' : this.LANGUAGE
-      subfolder = subfolder === 'uk' ? 'ua' : subfolder
-
-      if (subfolder.length > 0) return `/${subfolder}/`
-      return '/'
     },
   },
   mounted() {},
@@ -42,7 +35,7 @@ export default {
 <style lang="sass">
 .header
   background-color: #ccc
-  
+
   &__inner
     display: flex
     align-items: center

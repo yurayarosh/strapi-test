@@ -42,7 +42,6 @@ export default {
   data() {
     return {
       BACKEND_HOST: process.env.BACKEND_HOST,
-      LANGUAGE: this.$route.meta.language,
     }
   },
 }

@@ -3,7 +3,7 @@ export default {
     const organization = {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      url: 'some url',
+      url: process.env.BASE_URL,
     }
 
     const breadcrumbsItems = this.breadcrumbs.map((item, i) => ({
@@ -11,7 +11,7 @@ export default {
       position: i + 1,
       item: {
         '@type': 'WebPage',
-        '@id': item.url,
+        '@id': `${process.env.BASE_URL}${item.url}`,
         name: item.text,
       },
     }))

@@ -1,3 +1,6 @@
+import axios from 'axios'
+import { langConfig } from './assets/scripts/utils'
+
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -38,4 +41,35 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
+
+  generate: {
+    async routes() {
+      const getRoutes = async (collection = 'pages') => {
+        const { default: def, languages } = langConfig
+        const response = await axios.get(`${process.env.BACKEND_HOST}/${collection}`)
+        const { data: items } = response
+      
+        const routes = []
+      
+        languages.forEach(language => {
+          items.forEach(({ alias, id }) => {
+            if (alias === null) alias = ''
+            const langName = language === 'uk' ? 'ua' : language
+            const subdir = language === def ? '' : `/${langName}`
+            let name = ''
+      
+            if (alias) name = language === def ? alias : `${alias}---${langName}`
+      
+            routes.push({
+              route: `${subdir}/${alias}`,
+            })
+          })
+        })
+      
+        return routes
+      }
+
+      return [...(await getRoutes('pages')), ...(await getRoutes('posts'))]
+    },
+  },
 }

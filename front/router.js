@@ -1,3 +1,4 @@
+import axios from 'axios'
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -9,8 +10,9 @@ Vue.use(Router)
 
 const getRoutes = async (collection = 'pages', component) => {
   const { default: def, languages } = langConfig
-  const response = await fetch(`${process.env.BACKEND_HOST}/${collection}`)
-  const items = await response.json()
+  const response = await axios.get(`${process.env.BACKEND_HOST}/${collection}`)
+  const { data: items } = response
+
   const routes = []
 
   languages.forEach(language => {

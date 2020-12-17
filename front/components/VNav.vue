@@ -18,9 +18,6 @@ export default {
     }
   },
   computed: {
-    LANGUAGE() {
-      return this.$route.meta.language
-    },
     isHome() {
       return !this.$route.name
     },

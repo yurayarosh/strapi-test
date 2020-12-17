@@ -23,10 +23,7 @@ export default {
       languages: langConfig.languages,
     }
   },
-  computed: {
-    LANGUAGE() {
-      return this.$route.meta.language
-    },
+  computed: {    
     list() {
       return this.languages.map(lang => {
         const isCurrentLanguage = lang === this.LANGUAGE
