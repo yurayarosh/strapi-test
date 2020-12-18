@@ -55,9 +55,6 @@ export default {
       return `/${lang}/${this.url}`
     },
   },
-  mounted() {
-    console.log(this.list)
-  },
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <nuxt-link :to="url" class="post">
     <img
-      :src="`${BACKEND_HOST}${img.formats.medium.url}`"
+      :src="`${BASE_URL_BACK}${img.formats.medium.url}`"
       :alt="img.alternativeText"
       :title="img.caption"
       class="post__img"
@@ -15,8 +15,11 @@
 </template>
 
 <script>
+import language from '@/mixins/language'
+
 export default {
-  name: 'VPost',  
+  name: 'VPost',
+  mixins: [language],
   props: {
     url: {
       type: String,
@@ -41,7 +44,7 @@ export default {
   },
   data() {
     return {
-      BACKEND_HOST: process.env.BACKEND_HOST,
+      BASE_URL_BACK: process.env.BASE_URL_BACK,
     }
   },
 }

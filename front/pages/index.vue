@@ -3,8 +3,6 @@
     {{ homePath }}
     <v-breadcrumbs :list="breadcrumbs" />
     <v-input v-model.trim="name" required type="text" label="" maxlength="20" name="name" />
-
-    <p>{{ trimmedName }}</p>
   </div>
 </template>
 
@@ -28,17 +26,34 @@ export default {
   },
   computed: {
     breadcrumbs() {
-      return [
-        {
-          url: this.homePath,
-          text: 'top page',
-        },
-        // {
-        //   url: `https://example.com/foo${this.$router}`,
-        //   text: 'foo',
-        // }
-      ]
+      if (!this.pageData?.length) return []
+
+      const arr = this.pageData.parents_pages.map(page => ({
+        url: `/${page.alias}`,
+        text: page[`title_${this.LANGUAGE}`],
+      }))
+
+      return arr
+      // return [
+      //   {
+      //     url: this.homePath,
+      //     text: 'top page',
+      //   },
+      //   // {
+      //   //   url: `https://example.com/foo${this.$router}`,
+      //   //   text: 'foo',
+      //   // }
+      // ]
     },
+  },
+  async mounted() {
+    this.pageData = await this.$store.dispatch('pages/fetchPage', this.$route.meta.id)
+
+    console.log(this.breadcrumbs)
+    // const response = await fetch(`${process.env.BASE_URL_BACK}/pages/${this.$route.meta.id}`)
+    // const pageData = await response.json()
+    // console.log(pageData)
+    // console.log(this.$route.meta)
   },
 }
 </script>

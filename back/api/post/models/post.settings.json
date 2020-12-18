@@ -43,8 +43,8 @@
     "description_uk": {
       "type": "text"
     },
-    "static_page": {
-      "model": "page",
+    "parent_pages": {
+      "collection": "page",
       "via": "post"
     }
   }

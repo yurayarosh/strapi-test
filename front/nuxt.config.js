@@ -46,26 +46,23 @@ export default {
     async routes() {
       const getRoutes = async (collection = 'pages') => {
         const { default: def, languages } = langConfig
-        const response = await axios.get(`${process.env.BACKEND_HOST}/${collection}`)
+        const response = await axios.get(`${process.env.BASE_URL_BACK}/${collection}`)
         const { data: items } = response
-      
+
         const routes = []
-      
+
         languages.forEach(language => {
-          items.forEach(({ alias, id }) => {
+          items.forEach(({ alias }) => {
             if (alias === null) alias = ''
             const langName = language === 'uk' ? 'ua' : language
             const subdir = language === def ? '' : `/${langName}`
-            let name = ''
-      
-            if (alias) name = language === def ? alias : `${alias}---${langName}`
-      
+
             routes.push({
               route: `${subdir}/${alias}`,
             })
           })
         })
-      
+
         return routes
       }
 

@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import language from '@/mixins/language'
 
 export default {
   head() {
@@ -19,7 +18,6 @@ export default {
       },
     }
   },
-  mixins: [language],
   mounted() {
     // console.log(this.$store.getters)
 

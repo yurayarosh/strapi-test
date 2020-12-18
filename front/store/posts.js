@@ -9,7 +9,7 @@ export const mutations = {
 export const actions = {
   async fetchPosts({ commit }) {
     try {
-      const response = await fetch(`${process.env.BACKEND_HOST}/posts`)
+      const response = await fetch(`${process.env.BASE_URL_BACK}/posts`)
       const posts = await response.json()
 
       commit('setPosts', posts)

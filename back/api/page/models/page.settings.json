@@ -35,8 +35,17 @@
     "caption_uk": {
       "type": "string"
     },
+    "parents_pages": {
+      "collection": "page",
+      "via": "children_pages",
+      "dominant": true
+    },
+    "children_pages": {
+      "collection": "page",
+      "via": "parents_pages"
+    },
     "post": {
-      "via": "static_page",
+      "via": "parent_pages",
       "model": "post"
     }
   }
