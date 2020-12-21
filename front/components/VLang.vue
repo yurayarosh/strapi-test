@@ -6,7 +6,7 @@
       class="lang__item"
       :class="{ 'lang__item--current': lang.current }"
     >
-      <component :is="lang.component" :to="lang.to" class="lang__link">{{
+      <component :is="lang.component" :to="lang.to" :class="lang.className">{{
         lang.caption
       }}</component>
     </li>
@@ -15,18 +15,21 @@
 
 <script>
 import { langConfig } from '@/assets/scripts/utils'
+import language from '@/mixins/language'
 
 export default {
   name: 'VLang',
+  mixins: [language],
   data() {
     return {
       languages: langConfig.languages,
     }
   },
-  computed: {    
+  computed: {
     list() {
       return this.languages.map(lang => {
         const isCurrentLanguage = lang === this.LANGUAGE
+        const className = isCurrentLanguage ? '' : 'lang__link'
         const component = isCurrentLanguage ? 'span' : 'nuxt-link'
         const current = lang === this.LANGUAGE
         const url = this.$route.name?.split('---')[0] || ''
@@ -40,19 +43,13 @@ export default {
 
         return {
           component,
+          className,
           lang,
           to,
           caption,
           current,
         }
       })
-    },
-  },
-  methods: {
-    getUrl(lang) {
-      if (lang === 'ru') return `/${this.url}`
-      if (lang === 'uk') return `/ua/${this.url}`
-      return `/${lang}/${this.url}`
     },
   },
 }
@@ -62,8 +59,13 @@ export default {
 .lang
   display: flex
   align-items: center
+  text-transform: uppercase
 
   &__item
     +notlast
       margin-right: 10px
+
+  &__link
+    +hover-focus
+      text-decoration: underline
 </style>

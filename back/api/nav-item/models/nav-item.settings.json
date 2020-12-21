@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nav_items",
+  "info": {
+    "name": "Nav Item",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title_uk": {
+      "type": "string"
+    },
+    "page": {
+      "model": "page",
+      "via": "nav_item"
+    },
+    "title_ru": {
+      "type": "string"
+    }
+  }
+}

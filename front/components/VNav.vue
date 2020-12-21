@@ -16,8 +16,7 @@ export default {
   mixins: [homePath],
   data() {
     return {
-      // list: [],
-      pages: [],
+      nav: [],
     }
   },
   computed: {
@@ -25,11 +24,11 @@ export default {
       return !this.$route.name
     },
     list() {
-      if (this.pages.length > 0) {
-        return this.pages.map(page => {
+      if (this.nav?.length > 0) {
+        return this.nav.map(item => {
           return {
-            caption: page[`caption_${this.LANGUAGE}`],
-            alias: page.alias,
+            caption: item[`title_${this.LANGUAGE}`],
+            alias: item.page.alias,
           }
         })
       }
@@ -40,25 +39,24 @@ export default {
       return [...this.list]
     },
   },
+  async fetch() {
+    await this.$store.dispatch('pages/fetchNavList')
+    this.nav = this.$store.getters['pages/navList']
+  },
   methods: {
     addHomeNavItem(i) {
       if (this.isHome && i === 0) return false
       return true
     },
-    async fetchNavList() {
-      await this.$store.dispatch('pages/fetchPages')
-
-      this.pages = this.$store.getters['pages/pages']
-    },
-  },
-  async mounted() {
-    await this.fetchNavList()
   },
 }
 </script>
 
 <style lang="sass">
 .nav
+  text-transform: uppercase
+  font-weight: 700
+
   &__list
     display: flex
     align-items: center
@@ -67,4 +65,9 @@ export default {
   &__item
     padding-left: 10px
     padding-right: 10px
+  
+  &__link
+    +tr(color .3s)
+    +hover-focus
+      color: $dark
 </style>

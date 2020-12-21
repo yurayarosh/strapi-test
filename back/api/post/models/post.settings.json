@@ -43,9 +43,9 @@
     "description_uk": {
       "type": "text"
     },
-    "parent_pages": {
-      "collection": "page",
-      "via": "post"
+    "parent_page": {
+      "model": "page",
+      "via": "posts"
     }
   }
 }

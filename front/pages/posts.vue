@@ -1,20 +1,20 @@
 <template>
   <section class="section">
-    <v-breadcrumbs class="section__breadcrumbs" :list="breadcrumbs" />
+    <div class="container">
+      <ul v-if="isLoaded" class="posts">
+        <li v-for="post in posts" :key="post.id" class="posts__item">
+          <v-post
+            :url="post.alias"
+            :title="post[`title_${LANGUAGE}`]"
+            :img="post.img"
+            :description="post[`description_${LANGUAGE}`]"
+            :date="post.published_at"
+          />
+        </li>
+      </ul>
 
-    <ul v-if="isLoaded" class="posts">
-      <li v-for="post in posts" :key="post.id" class="posts__item">
-        <v-post
-          :url="post.alias"
-          :title="post[`title_${LANGUAGE}`]"
-          :img="post.img"
-          :description="post[`description_${LANGUAGE}`]"
-          :date="post.published_at"
-        />
-      </li>
-    </ul>
-
-    <p v-else class="loader">Loading...</p>
+      <p v-else class="loader">Loading...</p>
+    </div>
   </section>
 </template>
 
@@ -23,9 +23,7 @@ import microdata from '@/mixins/microdata'
 
 export default {
   name: 'PagePosts',
-  mixins: [
-    microdata,
-  ],
+  mixins: [microdata],
   data() {
     const { BASE_URL } = process.env
 
@@ -34,16 +32,6 @@ export default {
       name: '',
       isLoaded: false,
       posts: null,
-      breadcrumbs: [
-        {
-          url: '/',
-          text: 'top page',
-        },
-        {
-          url: this.$route.path,
-          text: 'foo',
-        },
-      ],
     }
   },
   computed: {},
@@ -55,3 +43,15 @@ export default {
   },
 }
 </script>
+
+<style lang="sass">
+.posts
+  @extend %row
+  margin-left: -15px
+  margin-right: -15px
+
+  &__item
+    width: 50%
+    padding-left: 15px
+    padding-right: 15px
+</style>

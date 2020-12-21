@@ -6,7 +6,7 @@ export default {
       url: process.env.BASE_URL,
     }
 
-    const breadcrumbsItems = this.breadcrumbs.map((item, i) => ({
+    const breadcrumbsItems = this.breadcrumbs?.map((item, i) => ({
       '@type': 'ListItem',
       position: i + 1,
       item: {
@@ -14,7 +14,7 @@ export default {
         '@id': `${process.env.BASE_URL}${item.url}`,
         name: item.text,
       },
-    }))
+    })) || []
 
     const breadcrumbs = {
       '@context': 'https://schema.org',

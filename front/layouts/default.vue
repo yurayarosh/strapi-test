@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import setHTMLClassNames from '@/assets/scripts/setHTMLClassNames'
 
 export default {
   head() {
@@ -19,10 +20,7 @@ export default {
     }
   },
   mounted() {
-    // console.log(this.$store.getters)
-
-    // console.log(this.$route)
-    // console.log(this.$route)
+    setHTMLClassNames()
   },
 }
 </script>
