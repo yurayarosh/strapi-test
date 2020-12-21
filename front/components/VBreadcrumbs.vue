@@ -7,7 +7,11 @@
         class="breadcrumbs__item"
         :class="{ 'breadcrumbs__item--current': i === list.length - 1 }"
       >
-        <component :is="item.url ? 'nuxt-link' : 'span'" :to="item.url" class="breadcrumbs__link">
+        <component
+          :is="item.url ? 'nuxt-link' : 'span'"
+          :to="item.url"
+          :class="{ breadcrumbs__link: item.url }"
+        >
           {{ item.text }}
         </component>
       </li>
@@ -40,4 +44,8 @@ export default {
         content: '-'
         margin-left: .5em
         margin-right: .5em
+
+  &__link
+    +hover-focus
+      text-decoration: underline
 </style>

@@ -14,6 +14,7 @@ import setHTMLClassNames from '@/assets/scripts/setHTMLClassNames'
 export default {
   head() {
     return {
+      // title: this.pageData[`title_${this.LANGUAGE}`],
       htmlAttrs: {
         lang: this.$route.meta.language,
       },
