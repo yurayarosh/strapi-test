@@ -63,8 +63,7 @@ export default {
     },
   },
   jsonld() {
-    const organization = {
-      '@context': 'https://schema.org',
+    const baseOrganization = {
       '@type': 'Organization',
       name: process.env.BASE_NAME,
       url: `${process.env.BASE_URL}/`,
@@ -75,6 +74,11 @@ export default {
         width: 512,
         height: 512,
       },
+    }
+
+    const organization = {
+      '@context': 'https://schema.org',
+      ...baseOrganization,
       sameAs: ['https://www.instagram.com/', 'https://www.facebook.com/'],
       diversityPolicy: `${process.env.BASE_URL}/`,
       ethicsPolicy: `${process.env.BASE_URL}/`,
@@ -92,13 +96,18 @@ export default {
       this.breadcrumbs?.map(({ page, navItem }, i) => {
         const pageAlias = !page.alias ? '' : page.alias
 
+        const name =
+          this.$route.meta.type === POST
+            ? getPostTitle(navItem[`title_${this.LANGUAGE}`])
+            : navItem[`title_${this.LANGUAGE}`]
+
         return {
           '@type': 'ListItem',
           position: i + 1,
           item: {
             '@type': 'WebPage',
             '@id': `${process.env.BASE_URL}${this.homePath}${pageAlias}`,
-            name: navItem[`title_${this.LANGUAGE}`],
+            name,
           },
         }
       }) || []
@@ -109,70 +118,40 @@ export default {
       itemListElement: breadcrumbsItems,
     }
 
-    const post = this.$route.meta.type === POST ? {
-      '@context': 'http://schema.org',
-      '@type': 'NewsArticle',
-      description: `${this.pageData[`description_${this.LANGUAGE}`]}`,
-      image: [
-        {
-          '@context': 'http://schema.org',
-          '@type': 'ImageObject',
-          url: `${process.env.BASE_URL_BACK}${this.pageData.img?.url}`,
-          height: this.pageData.img?.height,
-          width: this.pageData.img?.width,
-        },
-      ],
-      mainEntityOfPage: `${process.env.BASE_URL}${this.homePath}${this.pageData.parent_page?.alias}`,
-      url: `${process.env.BASE_URL}${this.homePath}${this.pageData.alias}`,
-      inLanguage: this.LANGUAGE,
-      author: [
-        {
-          '@context': 'http://schema.org',
-          '@type': 'Organization',
-          name: process.env.BASE_NAME,
-        },
-      ],
-      dateModified: this.pageData.updated_at,
-      datePublished: this.pageData.published_at,
-      headline: getPostTitle(this.pageData[`title_${this.LANGUAGE}`]),
-      publisher: {
-        '@type': 'Organization',
-        name: process.env.BASE_NAME,
-        url: `${process.env.BASE_URL}/`,
-        logo: {
-          '@context': 'http://schema.org',
-          '@type': 'ImageObject',
-          url: `${process.env.BASE_URL}/logo.jpg`,
-          width: 512,
-          height: 512,
-        },
-      },
-      copyrightHolder: {
-        '@type': 'Organization',
-        name: process.env.BASE_NAME,
-        url: `${process.env.BASE_URL}/`,
-        logo: {
-          '@context': 'http://schema.org',
-          '@type': 'ImageObject',
-          url: `${process.env.BASE_URL}/logo.jpg`,
-          width: 512,
-          height: 512,
-        },
-      },
-      sourceOrganization: {
-        '@type': 'Organization',
-        name: process.env.BASE_NAME,
-        url: `${process.env.BASE_URL}/`,
-        logo: {
-          '@context': 'http://schema.org',
-          '@type': 'ImageObject',
-          url: `${process.env.BASE_URL}/logo.jpg`,
-          width: 512,
-          height: 512,
-        },
-      },
-      copyrightYear: new Date(this.pageData.published_at).getFullYear(),
-    } : null
+    const post =
+      this.$route.meta.type === POST
+        ? {
+            '@context': 'http://schema.org',
+            '@type': 'NewsArticle',
+            description: `${this.pageData[`description_${this.LANGUAGE}`]}`,
+            image: [
+              {
+                '@context': 'http://schema.org',
+                '@type': 'ImageObject',
+                url: `${process.env.BASE_URL_BACK}${this.pageData.img?.url}`,
+                height: this.pageData.img?.height,
+                width: this.pageData.img?.width,
+              },
+            ],
+            mainEntityOfPage: `${process.env.BASE_URL}${this.homePath}${this.pageData.parent_page?.alias}`,
+            url: `${process.env.BASE_URL}${this.homePath}${this.pageData.alias}`,
+            inLanguage: this.LANGUAGE,
+            author: [
+              {
+                '@context': 'http://schema.org',
+                '@type': 'Organization',
+                name: process.env.BASE_NAME,
+              },
+            ],
+            dateModified: this.pageData.updated_at,
+            datePublished: this.pageData.published_at,
+            headline: getPostTitle(this.pageData[`title_${this.LANGUAGE}`]),
+            publisher: baseOrganization,
+            copyrightHolder: baseOrganization,
+            sourceOrganization: baseOrganization,
+            copyrightYear: new Date(this.pageData.published_at).getFullYear(),
+          }
+        : null
 
     const objects = [organization, breadcrumbs, post]
 

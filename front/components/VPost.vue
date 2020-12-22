@@ -10,7 +10,7 @@
     <span class="post__content">
       <time v-if="date" :datetime="date" class="post__date">{{ date | formatDate(LANGUAGE) }}</time>
 
-      <span class="post__title">{{ title }}</span>
+      <span class="post__title">{{ getPostTitle(title) }}</span>
 
       <span v-if="description" class="post__text">{{ description }}</span>
     </span>
@@ -19,6 +19,7 @@
 
 <script>
 import language from '@/mixins/language'
+import { getPostTitle } from '@/assets/scripts/helpers'
 
 export default {
   name: 'VPost',
@@ -49,6 +50,9 @@ export default {
     return {
       BASE_URL_BACK: process.env.BASE_URL_BACK,
     }
+  },
+  methods: {
+    getPostTitle,
   },
 }
 </script>

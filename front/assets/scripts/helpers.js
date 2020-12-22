@@ -64,6 +64,6 @@ export const isTouch = detectTouch()
 // }
 
 export const getPostTitle = title => {
-  if (typeof window === 'undefined') return title
+  // if (typeof window === 'undefined') return title
   return title?.replace(` - ${process.env.BASE_NAME}.`, '')
 }

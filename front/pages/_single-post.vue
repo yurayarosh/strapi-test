@@ -4,8 +4,6 @@
 
     <section class="section">
       <div v-if="isLoaded" class="container">
-        <h1>{{ pageData[`title_${LANGUAGE}`] }}</h1>
-
         <div v-html="pageData[`text_${LANGUAGE}`]" class="article__inner"></div>
       </div>
 
