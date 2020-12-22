@@ -11,18 +11,17 @@ import homePath from '@/mixins/home-path'
 import microdata from '@/mixins/microdata'
 import PageHome from '@/pages/index'
 import PagePosts from '@/pages/posts'
+import head from '@/mixins/head'
 
 export default {
   name: 'SinglePage',
-  // head() {
-  //   return {
-  //     title: 'blah',
-  //   }
-  // },
-  mixins: [homePath, microdata],
   components: {
     PageHome,
     PagePosts,
+  },
+  mixins: [homePath, microdata, head],
+  async fetch() {
+    this.pageData = await this.$store.dispatch('pages/fetchPage', this.$route.meta.id)
   },
   computed: {
     pageName() {
@@ -31,12 +30,6 @@ export default {
       const [name] = this.$route.name.split('---')
       return name
     },
-  },
-  async fetch() {
-    this.pageData = await this.$store.dispatch('pages/fetchPage', this.$route.meta.id)
-  },
-  mounted() {
-    // console.log(this.$route.meta)
   },
 }
 </script>

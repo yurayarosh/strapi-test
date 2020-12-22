@@ -1,6 +1,6 @@
+import homePath from '@/mixins/home-path'
 import { PAGE, POST } from '@/assets/scripts/pageTypes'
 import { getPostTitle } from '@/assets/scripts/helpers'
-import homePath from '@/mixins/home-path'
 
 export default {
   mixins: [homePath],

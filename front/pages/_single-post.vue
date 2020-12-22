@@ -4,7 +4,7 @@
 
     <section class="section">
       <div v-if="isLoaded" class="container">
-        <div v-html="pageData[`text_${LANGUAGE}`]" class="article__inner"></div>
+        <div class="article__inner" v-html="pageData[`text_${LANGUAGE}`]" />
       </div>
 
       <div v-else class="container">
@@ -16,18 +16,19 @@
 
 <script>
 import microdata from '@/mixins/microdata'
+import head from '@/mixins/head'
 
 export default {
-  mixins: [microdata],
-  data() {
-    return {
-      isLoaded: false,
-    }
-  },
+  mixins: [microdata, head],
   async fetch() {
     this.pageData = await this.$store.dispatch('posts/fetchPost', this.$route.meta.id)
     this.postsPage = await this.$store.dispatch('pages/fetchPage', this.pageData.parent_page.id)
   },
+  data() {
+    return {
+      isLoaded: false,
+    }
+  },  
   mounted() {
     this.isLoaded = true
   },
