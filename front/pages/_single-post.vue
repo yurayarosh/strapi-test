@@ -17,11 +17,10 @@
 </template>
 
 <script>
-import homePath from '@/mixins/home-path'
 import microdata from '@/mixins/microdata'
 
 export default {
-  mixins: [homePath, microdata],
+  mixins: [microdata],
   data() {
     return {
       isLoaded: false,

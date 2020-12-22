@@ -19,11 +19,9 @@
 </template>
 
 <script>
-import microdata from '@/mixins/microdata'
-
 export default {
   name: 'PagePosts',
-  mixins: [microdata],
+  mixins: [],
   data() {
     const { BASE_URL } = process.env
 
@@ -47,6 +45,7 @@ export default {
 <style lang="sass">
 .posts
   @extend %row
+  
   margin-left: -15px
   margin-right: -15px
 

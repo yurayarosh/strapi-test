@@ -7,12 +7,8 @@
 </template>
 
 <script>
-import microdata from '@/mixins/microdata'
-import homePath from '@/mixins/home-path'
-
 export default {
   name: 'PageHome',
-  mixins: [microdata, homePath],
   data() {
     return {
       pageData: {},

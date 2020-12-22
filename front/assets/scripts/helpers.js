@@ -42,23 +42,28 @@ const detectTouch = () => {
 
 export const isTouch = detectTouch()
 
-export function preventScroll() {
-  if (typeof window === 'undefined') return
+// export function preventScroll() {
+//   if (typeof window === 'undefined') return
 
-  const getScrollbarWidth = (() => window.innerWidth - document.documentElement.clientWidth)()
-  document.body.style.overflow = 'hidden'
-  if (getScrollbarWidth > 0) document.body.style.marginRight = `${getScrollbarWidth}px`
-}
+//   const getScrollbarWidth = (() => window.innerWidth - document.documentElement.clientWidth)()
+//   document.body.style.overflow = 'hidden'
+//   if (getScrollbarWidth > 0) document.body.style.marginRight = `${getScrollbarWidth}px`
+// }
 
-export function allowScroll() {
-  if (typeof window === 'undefined') return
+// export function allowScroll() {
+//   if (typeof window === 'undefined') return
 
-  document.body.style.overflow = ''
-  document.body.style.marginRight = ''
-}
+//   document.body.style.overflow = ''
+//   document.body.style.marginRight = ''
+// }
 
-export function toggleScroll(condition) {
-  if (typeof window === 'undefined') return
+// export function toggleScroll(condition) {
+//   if (typeof window === 'undefined') return
 
-  condition ? preventScroll() : allowScroll()
+//   condition ? preventScroll() : allowScroll()
+// }
+
+export const getPostTitle = title => {
+  if (typeof window === 'undefined') return title
+  return title?.replace(` - ${process.env.BASE_NAME}.`, '')
 }
