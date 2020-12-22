@@ -1,3 +1,5 @@
+import { PAGE, POST } from '@/assets/scripts/pageTypes'
+
 export default {
   data() {
     return {
@@ -7,18 +9,20 @@ export default {
   },
   computed: {
     breadcrumbs() {
-      const isDynamicPage = !this.pageData.parents_pages
+      const pageType = this.$route.meta.type
       let parents = this.pageData.parents_pages || []
-      let rootPage
+      let rootPage = {}
 
-      if (isDynamicPage) {
-        rootPage = this.postsPage || {} // posts, products e.g.
+      if (pageType === POST) rootPage = this.postsPage
+
+      if (pageType !== PAGE) {
         if (rootPage.parents_pages) parents = [...rootPage.parents_pages, rootPage]
       }
 
-      const [currentNavItem] = isDynamicPage
-        ? []
-        : this.$store.getters['pages/navList'].filter(({ id }) => id === this.$route.meta.id)
+      const [currentNavItem] =
+        pageType !== PAGE
+          ? []
+          : this.$store.getters['pages/navList'].filter(({ id }) => id === this.$route.meta.id)
 
       const list = parents.map(page => {
         const [navItem] = this.$store.getters['pages/navList'].filter(
@@ -28,23 +32,25 @@ export default {
         return {
           page,
           navItem,
+          type: pageType,
         }
       })
 
       const currentPage = {
         isCurrent: true,
         page: this.pageData,
-        navItem: currentNavItem || { ...this.pageData, isDynamicPage: true },
+        navItem: currentNavItem || { ...this.pageData },
+        type: pageType,
       }
 
       return [...list, currentPage]
     },
     pageBreadcrumbs() {
-      return this.breadcrumbs.map(({ page, navItem, isCurrent }) => {
+      return this.breadcrumbs.map(({ page, navItem, isCurrent, type }) => {
         const url = page.alias === null ? this.homePath : page.alias
-        const text = navItem?.isDynamicPage
-          ? navItem?.[`title_${this.LANGUAGE}`] // Change dynamic page (post) breadcrumb title if necessary.
-          : navItem?.[`title_${this.LANGUAGE}`]
+        let text
+        if (type === PAGE) text = navItem?.[`title_${this.LANGUAGE}`]
+        if (type === POST) text = navItem?.[`title_${this.LANGUAGE}`]
 
         return {
           text,

@@ -40,11 +40,12 @@ export const actions = {
       console.error(error)
     }
   },
-  async fetchnavItem(ctx, id) {
+  async fetchNavItem(ctx, id) {
     try {
       const response = await fetch(`${process.env.BASE_URL_BACK}/nav-items/${id}`)
       return await response.json()
     } catch (error) {
+      // eslint-disable-next-line
       console.error(error)
     }
   },

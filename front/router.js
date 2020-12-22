@@ -2,9 +2,10 @@ import axios from 'axios'
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import SinglePage from '@/pages/_single-page'
-import SinglePost from '@/pages/_single-post'
-import { langConfig } from '@/assets/scripts/utils'
+import SinglePage from './pages/_single-page'
+import SinglePost from './pages/_single-post'
+import { langConfig } from './assets/scripts/utils'
+import { PAGE, POST } from './assets/scripts/pageTypes'
 
 Vue.use(Router)
 
@@ -12,6 +13,19 @@ const getRoutes = async (collection = 'pages', component) => {
   const { default: def, languages } = langConfig
   const response = await axios.get(`${process.env.BASE_URL_BACK}/${collection}`)
   const { data: items } = response
+  let pageType
+
+  switch (collection) {
+    case 'pages':
+      pageType = PAGE
+      break
+    case 'posts':
+      pageType = POST
+      break
+    default:
+      pageType = PAGE
+      break
+  }
 
   const routes = []
 
@@ -31,6 +45,7 @@ const getRoutes = async (collection = 'pages', component) => {
         meta: {
           id,
           language,
+          type: pageType,
         },
       })
     })

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <ul v-if="list.length > 0" class="breadcrumbs">
+    <ul v-if="list.length > 1" class="breadcrumbs">
       <li
         v-for="(item, i) in list"
         :key="i"

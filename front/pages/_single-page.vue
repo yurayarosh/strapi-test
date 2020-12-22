@@ -35,6 +35,9 @@ export default {
   async fetch() {
     this.pageData = await this.$store.dispatch('pages/fetchPage', this.$route.meta.id)
   },
+  mounted() {
+    // console.log(this.$route.meta)
+  },
 }
 </script>
 
