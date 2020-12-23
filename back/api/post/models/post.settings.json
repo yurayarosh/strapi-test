@@ -44,8 +44,8 @@
       "type": "text"
     },
     "parent_page": {
-      "model": "page",
-      "via": "posts"
+      "via": "posts",
+      "model": "page"
     }
   }
 }

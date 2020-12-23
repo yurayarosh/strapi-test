@@ -9,13 +9,11 @@
 <script>
 export default {
   name: 'PageHome',
-  async fetch() {
-    this.pageData = await this.$store.dispatch('pages/fetchPage', this.$route.meta.id)
+  props: {
+    pageData: {
+      type: Object,
+      required: true,
+    },
   },
-  data() {
-    return {
-      pageData: {},
-    }
-  },  
 }
 </script>

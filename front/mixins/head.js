@@ -34,17 +34,17 @@ export default {
       link: [
         {
           rel: 'alternate',
-          href: `${process.env.BASE_URL}/ua/${this.pageData.alias}`,
+          href: `${process.env.BASE_URL}/ua/${this.pageData.alias || ''}`,
           hreflang: 'uk',
         },
         {
           rel: 'alternate',
-          href: `${process.env.BASE_URL}/${this.pageData.alias}`,
+          href: `${process.env.BASE_URL}/${this.pageData.alias || ''}`,
           hreflang: 'ru',
         },
         {
           rel: 'alternate',
-          href: `${process.env.BASE_URL}/${this.pageData.alias}`,
+          href: `${process.env.BASE_URL}/${this.pageData.alias || ''}`,
           hreflang: 'x-default',
         },
         {

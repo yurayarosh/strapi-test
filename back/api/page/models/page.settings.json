@@ -26,14 +26,8 @@
     "description_uk": {
       "type": "text"
     },
-    "plain_content": {
+    "plain_content_ru": {
       "type": "richtext"
-    },
-    "caption_ru": {
-      "type": "string"
-    },
-    "caption_uk": {
-      "type": "string"
     },
     "parents_pages": {
       "collection": "page",
@@ -45,12 +39,15 @@
       "via": "parents_pages"
     },
     "nav_item": {
-      "via": "page",
-      "model": "nav-item"
+      "model": "nav-item",
+      "via": "page"
     },
     "posts": {
-      "via": "parent_page",
-      "collection": "post"
+      "collection": "post",
+      "via": "parent_page"
+    },
+    "plain_content_uk": {
+      "type": "richtext"
     }
   }
 }

@@ -15,8 +15,8 @@
       "type": "string"
     },
     "page": {
-      "model": "page",
-      "via": "nav_item"
+      "via": "nav_item",
+      "model": "page"
     },
     "title_ru": {
       "type": "string"

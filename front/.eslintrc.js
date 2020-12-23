@@ -15,6 +15,7 @@ module.exports = {
     'space-before-function-paren': 0,
     'no-unused-vars': 1,
     'vue/max-attributes-per-line': 0,
+    'vue/singleline-html-element-content-newline': 0,
     'curly': 0,
     'comma-dangle': ['error', 'always-multiline'],
     'arrow-parens': ['error', 'as-needed'],

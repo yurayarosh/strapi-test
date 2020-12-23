@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <ul v-if="isLoaded" class="posts">
+      <ul v-if="posts && posts.length > 0" class="posts">
         <li v-for="post in posts" :key="post.id" class="posts__item">
           <v-post
             :url="post.alias"
@@ -19,25 +19,21 @@
 </template>
 
 <script>
+import language from '@/mixins/language'
+
 export default {
   name: 'PagePosts',
-  mixins: [],
-  data() {
-    const { BASE_URL } = process.env
-
-    return {
-      LANGUAGE: this.$route.meta.language,
-      name: '',
-      isLoaded: false,
-      posts: null,
-    }
+  mixins: [language],
+  props: {
+    pageData: {
+      type: Object,
+      required: true,
+    },
   },
-  computed: {},
-  async mounted() {
-    await this.$store.dispatch('posts/fetchPosts')
-    this.posts = this.$store.getters['posts/posts']
-
-    if (this.posts) this.isLoaded = true
+  computed: {
+    posts() {
+      return this.pageData.posts
+    },
   },
 }
 </script>

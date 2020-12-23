@@ -1,8 +1,9 @@
 <template>
   <div class="page">
     <v-breadcrumbs :list="pageBreadcrumbs" class="page__breadcrumbs" />
-    <page-home v-if="pageName === 'home'" />
-    <page-posts v-else-if="pageName === 'posts'" />
+    <page-home v-if="pageName === 'home'" :page-data="pageData" />
+    <page-posts v-else-if="pageName === 'posts'" :page-data="pageData" />
+    <page v-else :page-data="pageData" />
   </div>
 </template>
 
@@ -11,11 +12,13 @@ import homePath from '@/mixins/home-path'
 import microdata from '@/mixins/microdata'
 import PageHome from '@/pages/index'
 import PagePosts from '@/pages/posts'
+import Page from '@/pages/page'
 import head from '@/mixins/head'
 
 export default {
   name: 'SinglePage',
   components: {
+    Page,
     PageHome,
     PagePosts,
   },
