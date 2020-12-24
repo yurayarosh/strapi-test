@@ -1,4 +1,4 @@
-import { req, minLength, phone } from '@/assets/scripts/validations'
+import { req, minLength } from '@/assets/scripts/validations'
 
 export default {
   computed: {
@@ -13,8 +13,7 @@ export default {
 
         const checkValid = (name, i) => {
           if (name === 'required') processed.push(req(value))
-          if (name === 'minLength')
-            processed.push(minLength(value, validValues[i]))          
+          if (name === 'min_length') processed.push(minLength(value, validValues[i]))
 
           return !processed.some(el => !el)
         }

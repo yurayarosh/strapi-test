@@ -556,6 +556,26 @@
                 },
                 "type": {
                   "type": "string"
+                },
+                "validation": {
+                  "type": "object",
+                  "required": [
+                    "id"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "min_length": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "mask": {
+                  "type": "string"
                 }
               }
             }
@@ -624,6 +644,26 @@
                   "type": "string"
                 },
                 "type": {
+                  "type": "string"
+                },
+                "validation": {
+                  "type": "object",
+                  "required": [
+                    "id"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "min_length": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "mask": {
                   "type": "string"
                 }
               }

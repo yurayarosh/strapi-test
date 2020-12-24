@@ -24,6 +24,14 @@
     },
     "type": {
       "type": "string"
+    },
+    "validation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "forms.validations"
+    },
+    "mask": {
+      "type": "string"
     }
   }
 }

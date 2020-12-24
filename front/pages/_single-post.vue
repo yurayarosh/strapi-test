@@ -1,6 +1,8 @@
 <template>
-  <div class="page">
-    <v-breadcrumbs :list="pageBreadcrumbs" class="page__breadcrumbs" />
+  <fragment>
+    <div class="container">
+      <v-breadcrumbs :list="pageBreadcrumbs" class="main__breadcrumbs" />
+    </div>
 
     <section class="section">
       <div v-if="isLoaded" class="container">
@@ -11,7 +13,7 @@
         Loading...
       </div>
     </section>
-  </div>
+  </fragment>
 </template>
 
 <script>
@@ -28,7 +30,7 @@ export default {
     return {
       isLoaded: false,
     }
-  },  
+  },
   mounted() {
     this.isLoaded = true
   },

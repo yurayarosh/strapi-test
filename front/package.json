@@ -23,7 +23,8 @@
     "net": "^1.0.2",
     "nuxt": "^2.14.6",
     "nuxt-jsonld": "^1.5.0",
-    "v-mask": "^2.2.3"
+    "v-mask": "^2.2.3",
+    "vue-fragment": "^1.5.1"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",

@@ -5,9 +5,9 @@
     <form class="form__form" @submit.prevent="onSubmit">
       <div v-for="field in form.form_fields" :key="field.id" class="form__field">
         <v-input
+          :ref="field.name"
           v-model="inputs[field.name].value"
           v-mask="inputs[field.name].mask"
-          :ref="field.name"
           :type="field.type"
           :placeholder="field[`placeholder_${LANGUAGE}`]"
           :name="field.name"
@@ -32,42 +32,44 @@ import validate from '@/mixins/validate'
 
 export default {
   name: 'VFeedbackForm',
-  mixins: [language, validate],
   directives: {
     mask: VueMaskDirective,
   },
-  data() {
-    return {
-      inputs: {
-        username: {
-          value: '',
-          validations: {
-            minLength: 2,
-          },
-        },
-        phone: {
-          value: '',
-          mask: '+3 (###) ###-####',
-          validations: {
-            minLength: 17,
-          },
-        },
-      },
-    }
-  },
+  mixins: [language, validate],
   props: {
     form: {
       type: Object,
       required: true,
     },
   },
+  data() {
+    let inputs = {}
+
+    this.form.form_fields.forEach(({ name, mask, validation }) => {
+      const validations = validation ? { ...validation } : false
+      if (validations) delete validations.id
+
+      inputs = {
+        ...inputs,
+        [name]: {
+          mask,
+          validations,
+          value: '',
+        },
+      }
+    })
+
+    return {
+      inputs,
+    }
+  },
   methods: {
     clearFields() {
-      this.inputs.username.value = ''
-      this.inputs.phone.value = ''
-
-      this.$refs.username[0].$el.querySelector('.input__input').value = ''
-      this.$refs.phone[0].$el.querySelector('.input__input').value = ''
+      Object.values(this.inputs).forEach((input, i) => {
+        const key = Object.keys(this.inputs)[i]
+        input.value = ''
+        this.$refs[key][0].$el.querySelector('.input__input').value = ''
+      })
     },
     async onSubmit() {
       if (!this.isValid) return

@@ -1,22 +1,20 @@
 <template>
-  <div class="container">
-    <ul v-if="list.length > 1" class="breadcrumbs">
-      <li
-        v-for="(item, i) in list"
-        :key="i"
-        class="breadcrumbs__item"
-        :class="{ 'breadcrumbs__item--current': i === list.length - 1 }"
+  <ul class="breadcrumbs">
+    <li
+      v-for="(item, i) in list"
+      :key="i"
+      class="breadcrumbs__item"
+      :class="{ 'breadcrumbs__item--current': i === list.length - 1 }"
+    >
+      <component
+        :is="item.url ? 'nuxt-link' : 'span'"
+        :to="item.url"
+        :class="{ breadcrumbs__link: item.url }"
       >
-        <component
-          :is="item.url ? 'nuxt-link' : 'span'"
-          :to="item.url"
-          :class="{ breadcrumbs__link: item.url }"
-        >
-          {{ item.text }}
-        </component>
-      </li>
-    </ul>
-  </div>
+        {{ item.text }}
+      </component>
+    </li>
+  </ul>
 </template>
 
 <script>
