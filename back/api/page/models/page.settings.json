@@ -48,6 +48,16 @@
     },
     "plain_content_uk": {
       "type": "richtext"
+    },
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.hero"
+    },
+    "sections": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.sections"
     }
   }
 }

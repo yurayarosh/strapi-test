@@ -588,6 +588,12 @@
               "plain_content_uk": {
                 "type": "string"
               },
+              "hero": {
+                "type": "component"
+              },
+              "sections": {
+                "type": "component"
+              },
               "published_at": {
                 "type": "string"
               },

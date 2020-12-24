@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_standart_sections",
+  "info": {
+    "name": "Standart section",
+    "icon": "air-freshener"
+  },
+  "options": {},
+  "attributes": {
+    "title_ru": {
+      "type": "string"
+    },
+    "title_uk": {
+      "type": "string"
+    }
+  }
+}

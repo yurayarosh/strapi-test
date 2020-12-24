@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_features",
+  "info": {
+    "name": "Features",
+    "icon": "address-book"
+  },
+  "options": {},
+  "attributes": {
+    "title_ru": {
+      "type": "string"
+    },
+    "title_uk": {
+      "type": "string"
+    }
+  }
+}

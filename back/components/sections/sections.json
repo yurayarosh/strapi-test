@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_sections",
+  "info": {
+    "name": "sections",
+    "icon": "address-card",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "features": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.features"
+    },
+    "standart_section": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.standart-section"
+    }
+  }
+}
