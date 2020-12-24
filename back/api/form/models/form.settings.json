@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "forms",
+  "info": {
+    "name": "Form",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title_ru": {
+      "type": "string"
+    },
+    "title_uk": {
+      "type": "string"
+    },
+    "form_fields": {
+      "type": "component",
+      "repeatable": true,
+      "component": "forms.form-fields"
+    },
+    "type": {
+      "type": "string"
+    },
+    "btn": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.array"
+    }
+  }
+}

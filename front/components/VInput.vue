@@ -1,21 +1,20 @@
 <template>
-  <div class="form-input" :class="classes">
-    <label class="form-input__label" :for="_uid">{{ label }}</label>
+  <div class="input" :class="classes">
+    <label class="input__label" :for="_uid">{{ label }}</label>
     <component
-      :is="element === 'textarea' ? 'textarea' : 'input'"      
+      :is="element === 'textarea' ? 'textarea' : 'input'"
       :id="_uid"
-      ref="input"
-      :value="value"      
+      :value="value"
       v-bind="$attrs"
-      class="form-input__input"
+      class="input__input"
       @input="inputHandler"
       @focus="focusHandler"
       @blur="blurHandler"
     >
       {{ element === 'textarea' ? value : '' }}
     </component>
-    <transition name="form-input__errors" duration="1000">
-      <div v-show="!!errorMessage && showErrors" class="form-input__errors">
+    <transition name="input__errors" duration="1000">
+      <div v-show="!!errorMessage && showErrors" class="input__errors">
         {{ errorMessage }}
       </div>
     </transition>
@@ -50,9 +49,9 @@ export default {
   computed: {
     classes() {
       return {
-        'form-input_focus': this.isFocus,
-        'form-input_has-label': !!this.label,
-        'form-input_has-value': !!this.value,
+        input_focus: this.isFocus,
+        'input_has-label': !!this.label,
+        'input_has-value': !!this.value,
       }
     },
     // fieldClass() {
@@ -62,7 +61,6 @@ export default {
     //   }
     // }
   },
-  mounted() {},
   methods: {
     inputHandler(e) {
       this.$emit('input', e.target.value)
@@ -79,3 +77,17 @@ export default {
   },
 }
 </script>
+
+<style lang="sass">
+.input
+  text-align: left
+  &__label
+    display: block
+    margin-bottom: 5px
+  
+  &__input
+    border: 1px solid $dark
+    height: 30px
+    width: 100%
+    padding: 0.3rem
+</style>

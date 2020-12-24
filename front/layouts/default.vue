@@ -4,6 +4,12 @@
 
     <main class="main layout__main">
       <Nuxt />
+
+      <section class="section">
+        <div class="container">
+          <v-feedback-form v-if="feedbackForm" :form="feedbackForm" />
+        </div>
+      </section>
     </main>
   </div>
 </template>
@@ -11,8 +17,18 @@
 <script>
 import setHTMLClassNames from '@/assets/scripts/setHTMLClassNames'
 import homePath from '@/mixins/home-path'
+// import VForm from '../components/VForm.vue'
 
 export default {
+  // components: { VForm },
+  async fetch() {
+    this.feedbackForm = await this.$store.dispatch('form/fetchForm', 'feedback')
+  },
+  data() {
+    return {
+      feedbackForm: null,
+    }
+  },
   mixins: [homePath],
   mounted() {
     setHTMLClassNames()
