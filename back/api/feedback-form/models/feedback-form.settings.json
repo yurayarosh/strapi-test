@@ -1,9 +1,8 @@
 {
-  "kind": "collectionType",
-  "collectionName": "forms",
+  "kind": "singleType",
+  "collectionName": "feedback_forms",
   "info": {
-    "name": "Form",
-    "description": ""
+    "name": "Feedback form"
   },
   "options": {
     "increments": true,
@@ -17,13 +16,10 @@
     "title_uk": {
       "type": "string"
     },
-    "form_fields": {
+    "fields": {
       "type": "component",
       "repeatable": true,
       "component": "forms.form-fields"
-    },
-    "type": {
-      "type": "string"
     },
     "btn": {
       "type": "component",

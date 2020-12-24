@@ -15,4 +15,12 @@ export const actions = {
       console.error(error)
     }
   },
+  async fetchFeedbackForm() {
+    try {
+      const response = await fetch(`${process.env.BASE_URL_BACK}/feedback-form`)
+      return await response.json()
+    } catch (error) {
+      console.error(error)
+    }
+  },
 }

@@ -3,7 +3,7 @@
     <p class="form__title title title--h2">{{ form[`title_${LANGUAGE}`] }}</p>
 
     <form class="form__form" @submit.prevent="onSubmit">
-      <div v-for="field in form.form_fields" :key="field.id" class="form__field">
+      <div v-for="field in form.fields" :key="field.id" class="form__field">
         <v-input
           :ref="field.name"
           v-model="inputs[field.name].value"
@@ -45,7 +45,7 @@ export default {
   data() {
     let inputs = {}
 
-    this.form.form_fields.forEach(({ name, mask, validation }) => {
+    this.form.fields.forEach(({ name, mask, validation }) => {
       const validations = validation ? { ...validation } : false
       if (validations) delete validations.id
 
