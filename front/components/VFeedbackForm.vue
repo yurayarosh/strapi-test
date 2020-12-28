@@ -71,9 +71,7 @@ export default {
         this.$refs[key][0].$el.querySelector('.input__input').value = ''
       })
     },
-    async onSubmit() {
-      if (!this.isValid) return
-
+    async sendMessage() {
       const date = new Intl.DateTimeFormat('uk-UK', {
         year: 'numeric',
         month: 'numeric',
@@ -107,6 +105,11 @@ export default {
       } catch (error) {
         console.error(error)
       }
+    },
+    async onSubmit() {
+      if (!this.isValid) return
+
+      await this.sendMessage()
     },
   },
 }

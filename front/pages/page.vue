@@ -1,5 +1,26 @@
 <template>
-  <div v-if="pageData" v-html="pageData[`plain_content_${LANGUAGE}`]"/>
+  <fragment>
+    <section v-if="pageData && pageData.hero" class="hero">
+      <h1 class="hero__title title title--h1">{{ pageData.hero[`title_${LANGUAGE}`] }}</h1>
+    </section>
+
+    <fragment v-if="pageData && pageData.sections && pageData.sections.standart_section">
+      <section
+        v-for="(section, i) in pageData.sections.standart_section"
+        :key="i"
+        class="section"
+      >
+        <div class="container">
+          <h2 class="section__title title title--h2">{{ section[`title_${LANGUAGE}`] }}</h2>
+        </div>
+      </section>
+    </fragment>
+
+    <div
+      v-if="pageData && pageData[`plain_content_${LANGUAGE}`]"
+      v-html="pageData[`plain_content_${LANGUAGE}`]"
+    />
+  </fragment>
 </template>
 
 <script>

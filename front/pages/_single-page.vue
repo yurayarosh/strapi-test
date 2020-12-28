@@ -34,8 +34,6 @@ export default {
   async fetch() {
     this.pageData = await this.$store.dispatch('pages/fetchPage', this.$route.meta.id)
     this.feedbackForm = await this.$store.dispatch('form/fetchFeedbackForm')
-
-    console.log(this.feedbackForm)
   },
   data() {
     return {
