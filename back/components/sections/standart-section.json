@@ -1,8 +1,9 @@
 {
   "collectionName": "components_sections_standart_sections",
   "info": {
-    "name": "Standart section",
-    "icon": "air-freshener"
+    "name": "standart section",
+    "icon": "address-book",
+    "description": ""
   },
   "options": {},
   "attributes": {

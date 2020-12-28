@@ -4,6 +4,7 @@ import Router from 'vue-router'
 
 import SinglePage from './pages/_single-page'
 import SinglePost from './pages/_single-post'
+import SingleProduct from './pages/_single-product'
 import { langConfig } from './assets/scripts/utils'
 import { PAGE, POST, PRODUCT } from './assets/scripts/pageTypes'
 
@@ -60,6 +61,10 @@ const getRoutes = async (collection = 'pages', component) => {
 export async function createRouter() {
   return new Router({
     mode: 'history',
-    routes: [...(await getRoutes('pages', SinglePage)), ...(await getRoutes('posts', SinglePost))],
+    routes: [
+      ...(await getRoutes('pages', SinglePage)), 
+      ...(await getRoutes('posts', SinglePost)),
+      ...(await getRoutes('products', SingleProduct)),
+    ],
   })
 }

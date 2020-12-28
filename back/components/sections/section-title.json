@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_section_titles",
+  "info": {
+    "name": "Section title",
+    "icon": "ad",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "tag": {
+      "type": "string"
+    },
+    "title_ru": {
+      "type": "string"
+    },
+    "title_uk": {
+      "type": "string"
+    },
+    "modificator": {
+      "type": "string"
+    }
+  }
+}

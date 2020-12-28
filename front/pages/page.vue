@@ -4,10 +4,10 @@
       <h1 class="hero__title title title--h1">{{ pageData.hero[`title_${LANGUAGE}`] }}</h1>
     </section>
 
-    <fragment v-if="pageData && pageData.sections && pageData.sections.standart_section">
+    <fragment v-if="pageData && pageData.sections && pageData.sections.standart_sections">
       <section
-        v-for="(section, i) in pageData.sections.standart_section"
-        :key="i"
+        v-for="section in pageData.sections.standart_sections"
+        :key="section.id"
         class="section"
       >
         <div class="container">

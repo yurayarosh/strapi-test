@@ -65,7 +65,11 @@ export default {
         return routes
       }
 
-      return [...(await getRoutes('pages')), ...(await getRoutes('posts'))]
+      return [
+        ...(await getRoutes('pages')),
+        ...(await getRoutes('posts')),
+        ...(await getRoutes('products')),
+      ]
     },
   },
 }

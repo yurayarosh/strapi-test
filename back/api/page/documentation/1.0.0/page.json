@@ -598,6 +598,12 @@
                 "sections": {
                   "type": "component"
                 },
+                "products": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -667,6 +673,12 @@
                 },
                 "sections": {
                   "type": "component"
+                },
+                "products": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "published_at": {
                   "type": "string"
@@ -853,24 +865,7 @@
               "id": {
                 "type": "string"
               },
-              "features": {
-                "type": "object",
-                "required": [
-                  "id"
-                ],
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "title_ru": {
-                    "type": "string"
-                  },
-                  "title_uk": {
-                    "type": "string"
-                  }
-                }
-              },
-              "standart_section": {
+              "standart_sections": {
                 "type": "array",
                 "items": {
                   "type": "object",
@@ -888,6 +883,46 @@
                       "type": "string"
                     }
                   }
+                }
+              }
+            }
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title_ru": {
+                  "type": "string"
+                },
+                "title_uk": {
+                  "type": "string"
+                },
+                "description_ru": {
+                  "type": "string"
+                },
+                "description_uk": {
+                  "type": "string"
+                },
+                "alias": {
+                  "type": "string"
+                },
+                "parent_page": {
+                  "type": "string"
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
                 }
               }
             }
@@ -1035,24 +1070,7 @@
               "id": {
                 "type": "string"
               },
-              "features": {
-                "type": "object",
-                "required": [
-                  "id"
-                ],
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "title_ru": {
-                    "type": "string"
-                  },
-                  "title_uk": {
-                    "type": "string"
-                  }
-                }
-              },
-              "standart_section": {
+              "standart_sections": {
                 "type": "array",
                 "items": {
                   "type": "object",
@@ -1072,6 +1090,12 @@
                   }
                 }
               }
+            }
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "string"
             }
           },
           "published_at": {

@@ -666,6 +666,12 @@
               "sections": {
                 "type": "component"
               },
+              "products": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "published_at": {
                 "type": "string"
               },

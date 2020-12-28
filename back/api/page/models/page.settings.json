@@ -58,6 +58,10 @@
       "type": "component",
       "repeatable": false,
       "component": "sections.sections"
+    },
+    "products": {
+      "collection": "product",
+      "via": "parent_page"
     }
   }
 }
