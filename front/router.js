@@ -35,7 +35,7 @@ const getRoutes = async (collection = 'pages', component) => {
 
   languages.forEach(language => {
     items.forEach(({ alias, id }) => {
-      if (alias === null) alias = ''
+      if (!alias) alias = ''
       const langName = language === 'uk' ? 'ua' : language
       const subdir = language === def ? '' : `/${langName}`
       let name = ''
@@ -64,7 +64,7 @@ export async function createRouter() {
     routes: [
       ...(await getRoutes('pages', SinglePage)), 
       ...(await getRoutes('posts', SinglePost)),
-      ...(await getRoutes('products', SingleProduct)),
+      // ...(await getRoutes('products', SingleProduct)),
     ],
   })
 }

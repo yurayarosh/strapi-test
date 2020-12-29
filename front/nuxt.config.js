@@ -68,7 +68,7 @@ export default {
       return [
         ...(await getRoutes('pages')),
         ...(await getRoutes('posts')),
-        ...(await getRoutes('products')),
+        // ...(await getRoutes('products')),
       ]
     },
   },

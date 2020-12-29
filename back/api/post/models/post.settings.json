@@ -42,10 +42,6 @@
     },
     "description_uk": {
       "type": "text"
-    },
-    "parent_page": {
-      "via": "posts",
-      "model": "page"
     }
   }
 }

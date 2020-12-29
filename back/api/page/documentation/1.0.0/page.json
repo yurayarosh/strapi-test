@@ -583,12 +583,6 @@
                 "nav_item": {
                   "type": "string"
                 },
-                "posts": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "plain_content_uk": {
                   "type": "string"
                 },
@@ -659,12 +653,6 @@
                 "nav_item": {
                   "type": "string"
                 },
-                "posts": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "plain_content_uk": {
                   "type": "string"
                 },
@@ -717,55 +705,6 @@
               },
               "updated_by": {
                 "type": "string"
-              }
-            }
-          },
-          "posts": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "title_ru": {
-                  "type": "string"
-                },
-                "img": {
-                  "type": "string"
-                },
-                "alias": {
-                  "type": "string"
-                },
-                "text_ru": {
-                  "type": "string"
-                },
-                "description_ru": {
-                  "type": "string"
-                },
-                "title_uk": {
-                  "type": "string"
-                },
-                "text_uk": {
-                  "type": "string"
-                },
-                "description_uk": {
-                  "type": "string"
-                },
-                "parent_page": {
-                  "type": "string"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
               }
             }
           },
@@ -967,12 +906,6 @@
           },
           "nav_item": {
             "type": "string"
-          },
-          "posts": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           },
           "plain_content_uk": {
             "type": "string"

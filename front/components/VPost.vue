@@ -2,6 +2,7 @@
   <nuxt-link :to="url" class="post">
     <span class="post__img">
       <img
+        v-if="img"
         :src="`${BASE_URL_BACK}${img.formats.medium.url}`"
         :alt="img.alternativeText"
         :title="img.caption"

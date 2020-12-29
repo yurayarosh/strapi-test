@@ -19,12 +19,13 @@
 <script>
 import microdata from '@/mixins/microdata'
 import head from '@/mixins/head'
+import { POSTS } from '@/assets/scripts/pageTypes'
 
 export default {
   mixins: [microdata, head],
   async fetch() {
     this.pageData = await this.$store.dispatch('posts/fetchPost', this.$route.meta.id)
-    this.postsPage = await this.$store.dispatch('pages/fetchPage', this.pageData.parent_page.id)
+    this.postsPage = (await this.$store.dispatch('pages/fetchPages', { alias: POSTS }))[0]
   },
   data() {
     return {

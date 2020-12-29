@@ -579,12 +579,6 @@
               "nav_item": {
                 "type": "string"
               },
-              "posts": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "plain_content_uk": {
                 "type": "string"
               },

@@ -10,12 +10,22 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchPages({ commit }) {
-    try {
-      const response = await fetch(`${process.env.BASE_URL_BACK}/pages`)
-      const pages = await response.json()
+  async fetchPages(ctx, filter) {
+    let filterString = ''
 
-      commit('setPages', pages)
+    if (filter) {
+      filterString = '?'
+
+      Object.keys(filter).forEach((key, i) => {
+        filterString += `${key}=${Object.values(filter)[i]}&`
+      })
+
+      filterString = filterString.slice(0, -1)
+    }
+
+    try {
+      const response = await fetch(`${process.env.BASE_URL_BACK}/pages${filterString}`)
+      return await response.json()
     } catch (error) {
       // eslint-disable-next-line
       console.error('server error')

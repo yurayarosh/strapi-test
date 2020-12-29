@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "12/28/2020 2:15:21 PM"
+    "x-generation-date": "12/29/2020 12:34:05 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -4848,12 +4848,6 @@
               "nav_item": {
                 "type": "string"
               },
-              "posts": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "plain_content_uk": {
                 "type": "string"
               },
@@ -4981,12 +4975,6 @@
                 "nav_item": {
                   "type": "string"
                 },
-                "posts": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "plain_content_uk": {
                   "type": "string"
                 },
@@ -5057,12 +5045,6 @@
                 "nav_item": {
                   "type": "string"
                 },
-                "posts": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "plain_content_uk": {
                   "type": "string"
                 },
@@ -5115,55 +5097,6 @@
               },
               "updated_by": {
                 "type": "string"
-              }
-            }
-          },
-          "posts": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "title_ru": {
-                  "type": "string"
-                },
-                "img": {
-                  "type": "string"
-                },
-                "alias": {
-                  "type": "string"
-                },
-                "text_ru": {
-                  "type": "string"
-                },
-                "description_ru": {
-                  "type": "string"
-                },
-                "title_uk": {
-                  "type": "string"
-                },
-                "text_uk": {
-                  "type": "string"
-                },
-                "description_uk": {
-                  "type": "string"
-                },
-                "parent_page": {
-                  "type": "string"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
               }
             }
           },
@@ -5365,12 +5298,6 @@
           },
           "nav_item": {
             "type": "string"
-          },
-          "posts": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           },
           "plain_content_uk": {
             "type": "string"
@@ -5604,79 +5531,6 @@
           "description_uk": {
             "type": "string"
           },
-          "parent_page": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "alias": {
-                "type": "string"
-              },
-              "title_ru": {
-                "type": "string"
-              },
-              "title_uk": {
-                "type": "string"
-              },
-              "description_ru": {
-                "type": "string"
-              },
-              "description_uk": {
-                "type": "string"
-              },
-              "plain_content_ru": {
-                "type": "string"
-              },
-              "parents_pages": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "children_pages": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "nav_item": {
-                "type": "string"
-              },
-              "posts": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "plain_content_uk": {
-                "type": "string"
-              },
-              "hero": {
-                "type": "component"
-              },
-              "sections": {
-                "type": "component"
-              },
-              "products": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -5704,9 +5558,6 @@
             "type": "string"
           },
           "description_uk": {
-            "type": "string"
-          },
-          "parent_page": {
             "type": "string"
           },
           "published_at": {
@@ -5784,12 +5635,6 @@
               },
               "nav_item": {
                 "type": "string"
-              },
-              "posts": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
               },
               "plain_content_uk": {
                 "type": "string"

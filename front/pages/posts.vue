@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <ul v-if="posts && posts.length > 0" class="posts">
+      <ul v-if="posts.length > 0" class="posts">
         <li v-for="post in posts" :key="post.id" class="posts__item">
           <v-post
             :url="post.alias"
@@ -30,10 +30,13 @@ export default {
       required: true,
     },
   },
-  computed: {
-    posts() {
-      return this.pageData.posts
-    },
+  async fetch() {
+    this.posts = await this.$store.dispatch('posts/fetchPosts')
+  },
+  data() {
+    return {
+      posts: [],
+    }
   },
 }
 </script>

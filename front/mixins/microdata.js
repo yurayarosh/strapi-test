@@ -14,12 +14,14 @@ export default {
     breadcrumbs() {
       const pageType = this.$route.meta.type
       let parents = this.pageData.parents_pages || []
-      let rootPage = {}
+      let parentPage = {}
 
-      if (pageType === POST) rootPage = this.postsPage
+      if (pageType === POST) {
+        parentPage = this.postsPage
+      }
 
       if (pageType !== PAGE) {
-        if (rootPage.parents_pages) parents = [...rootPage.parents_pages, rootPage]
+        if (parentPage?.parents_pages) parents = [...parentPage.parents_pages, parentPage]
       }
 
       const [currentNavItem] =
@@ -50,7 +52,7 @@ export default {
     },
     pageBreadcrumbs() {
       return this.breadcrumbs.map(({ page, navItem, isCurrent, type }) => {
-        const url = page.alias === null ? this.homePath : page.alias
+        const url = !page.alias ? this.homePath : page.alias
         let text
         if (type === PAGE) text = navItem?.[`title_${this.LANGUAGE}`]
         if (type === POST) text = getPostTitle(navItem?.[`title_${this.LANGUAGE}`])
@@ -133,7 +135,7 @@ export default {
                 width: this.pageData.img?.width,
               },
             ],
-            mainEntityOfPage: `${process.env.BASE_URL}${this.homePath}${this.pageData.parent_page?.alias}`,
+            mainEntityOfPage: `${process.env.BASE_URL}${this.homePath}${this.postsPage?.alias}`,
             url: `${process.env.BASE_URL}${this.homePath}${this.pageData.alias}`,
             inLanguage: this.LANGUAGE,
             author: [

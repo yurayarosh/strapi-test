@@ -42,10 +42,6 @@
       "model": "nav-item",
       "via": "page"
     },
-    "posts": {
-      "collection": "post",
-      "via": "parent_page"
-    },
     "plain_content_uk": {
       "type": "richtext"
     },
