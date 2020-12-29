@@ -36,7 +36,10 @@ export default {
   },
   mixins: [homePath, microdata, head],
   async fetch() {
-    this.pageData = await this.$store.dispatch('pages/fetchPage', this.$route.meta.id)
+    this.pageData = await this.$store.dispatch('fetchCollection', {
+      collection: 'pages',
+      id: this.$route.meta.id,
+    })
     this.feedbackForm = await this.$store.dispatch('form/fetchFeedbackForm')
   },
   data() {

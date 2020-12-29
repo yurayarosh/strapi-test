@@ -30,7 +30,7 @@ export default {
     },
   },
   async fetch() {
-    this.products = await this.$store.dispatch('products/fetchProducts')
+    this.products = await this.$store.dispatch('fetchCollection', { collection: 'products' })
   },
   data() {
     return {

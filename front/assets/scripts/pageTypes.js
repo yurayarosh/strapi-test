@@ -1,3 +1,4 @@
+export const PAGES = 'pages'
 export const POSTS = 'posts'
 export const PRODUCTS = 'products'
 export const POST = 'post'

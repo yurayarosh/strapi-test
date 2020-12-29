@@ -31,7 +31,7 @@ export default {
     },
   },
   async fetch() {
-    this.posts = await this.$store.dispatch('posts/fetchPosts')
+    this.posts = await this.$store.dispatch('fetchCollection', { collection: 'posts' })
   },
   data() {
     return {
@@ -44,7 +44,7 @@ export default {
 <style lang="sass">
 .posts
   @extend %row
-  
+
   margin-left: -15px
   margin-right: -15px
 

@@ -24,8 +24,16 @@ import { POSTS } from '@/assets/scripts/pageTypes'
 export default {
   mixins: [microdata, head],
   async fetch() {
-    this.pageData = await this.$store.dispatch('posts/fetchPost', this.$route.meta.id)
-    this.postsPage = (await this.$store.dispatch('pages/fetchPages', { alias: POSTS }))[0]
+    this.pageData = await this.$store.dispatch('fetchCollection', {
+      collection: 'posts',
+      id: this.$route.meta.id,
+    })
+    this.postsPage = (
+      await this.$store.dispatch('fetchCollection', {
+        collection: 'pages',
+        filter: { alias: POSTS },
+      })
+    )[0]
   },
   data() {
     return {

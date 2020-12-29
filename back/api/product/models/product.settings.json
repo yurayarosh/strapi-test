@@ -25,6 +25,21 @@
     },
     "alias": {
       "type": "string"
+    },
+    "categories": {
+      "collection": "product-category",
+      "via": "products"
+    },
+    "img": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     }
   }
 }

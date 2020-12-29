@@ -6,7 +6,7 @@ import SinglePage from './pages/_single-page'
 import SinglePost from './pages/_single-post'
 import SingleProduct from './pages/_single-product'
 import { langConfig } from './assets/scripts/utils'
-import { PAGE, POST, PRODUCT } from './assets/scripts/pageTypes'
+import { PAGES, POSTS, PRODUCTS, PAGE, POST, PRODUCT } from './assets/scripts/pageTypes'
 
 Vue.use(Router)
 
@@ -17,13 +17,13 @@ const getRoutes = async (collection = 'pages', component) => {
   let pageType
 
   switch (collection) {
-    case 'pages':
+    case PAGES:
       pageType = PAGE
       break
-    case 'posts':
+    case POSTS:
       pageType = POST
       break
-    case 'products':
+    case PRODUCTS:
       pageType = PRODUCT
       break
     default:

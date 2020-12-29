@@ -24,8 +24,16 @@ import { PRODUCTS } from '@/assets/scripts/pageTypes'
 export default {
   mixins: [microdata, head],
   async fetch() {
-    this.pageData = await this.$store.dispatch('products/fetchProduct', this.$route.meta.id)
-    this.productsPage = (await this.$store.dispatch('pages/fetchPages', { alias: PRODUCTS }))[0]
+    this.pageData = await this.$store.dispatch('fetchCollection', {
+      collection: 'products',
+      id: this.$route.meta.id,
+    })
+    this.productsPage = (
+      await this.$store.dispatch('fetchCollection', {
+        collection: 'products',
+        filter: { alias: PRODUCTS },
+      })
+    )[0]
   },
   data() {
     return {
@@ -36,6 +44,8 @@ export default {
   },
   mounted() {
     this.isLoaded = true
+
+    console.log(this.pageData)
   },
 }
 </script>

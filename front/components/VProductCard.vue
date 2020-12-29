@@ -37,6 +37,11 @@ export default {
       default: '',
     },
   },
+  data() {
+    return {
+      BASE_URL_BACK: process.env.BASE_URL_BACK,
+    }
+  },
 }
 </script>
 

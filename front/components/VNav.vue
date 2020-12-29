@@ -2,7 +2,12 @@
   <nav v-if="filteredList.length > 0" class="nav">
     <ul class="nav__list">
       <li v-for="(item, i) in filteredList" :key="i" class="nav__item">
-        <nuxt-link :to="item.alias || homePath" class="nav__link">{{ item.caption }}</nuxt-link>
+        <nuxt-link
+          :to="item.alias || homePath"
+          class="nav__link"
+          exactActiveClass="nav__link--current"
+          >{{ item.caption }}</nuxt-link
+        >
       </li>
     </ul>
   </nav>
@@ -54,6 +59,8 @@ export default {
 
 <style lang="sass">
 .nav
+  $this: &
+
   text-transform: uppercase
   font-weight: 700
 
@@ -65,9 +72,12 @@ export default {
   &__item
     padding-left: 10px
     padding-right: 10px
-  
+
   &__link
     +tr(color .3s)
     +hover-focus
+      @extend #{$this}__link--current
+    
+    &--current
       color: $dark
 </style>
