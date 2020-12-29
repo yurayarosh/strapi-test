@@ -1,6 +1,6 @@
 <template>
-  <nuxt-link :to="url" class="post">
-    <span class="post__img">
+  <component :is="url ? 'nuxt-link' : 'div'" :to="url || false" class="card">
+    <span class="card__img">
       <img
         v-if="img"
         :src="`${BASE_URL_BACK}${img.formats.medium.url}`"
@@ -8,27 +8,21 @@
         :title="img.caption"
       />
     </span>
-    <span class="post__content">
-      <time v-if="date" :datetime="date" class="post__date">{{ date | formatDate(LANGUAGE) }}</time>
+    <span class="card__content">
+      <span class="card__title">{{ title }}</span>
 
-      <span class="post__title">{{ getPostTitle(title) }}</span>
-
-      <span v-if="description" class="post__text">{{ description }}</span>
+      <span v-if="description" class="card__text">{{ description }}</span>
     </span>
-  </nuxt-link>
+  </component>
 </template>
 
 <script>
-import language from '@/mixins/language'
-import { getPostTitle } from '@/assets/scripts/helpers'
-
 export default {
-  name: 'VPost',
-  mixins: [language],
+  name: 'VProductCard',
   props: {
     url: {
       type: String,
-      required: true,
+      default: '',
     },
     img: {
       type: Object,
@@ -36,35 +30,18 @@ export default {
     },
     title: {
       type: String,
-      required: true,
+      default: '',
     },
     description: {
       type: String,
       default: '',
     },
-    date: {
-      type: String,
-      default: '',
-    },
-  },
-  data() {
-    return {
-      BASE_URL_BACK: process.env.BASE_URL_BACK,
-    }
-  },
-  methods: {
-    getPostTitle,
   },
 }
 </script>
 
 <style lang="sass">
-.post
-  &__date
-    display: block
-    color: $dark
-    margin-bottom: 5px
-
+.card
   &__img
     display: block
     width: 100%

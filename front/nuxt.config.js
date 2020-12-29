@@ -52,7 +52,7 @@ export default {
 
         languages.forEach(language => {
           items.forEach(({ alias }) => {
-            if (alias === null) alias = ''
+            if (!alias) alias = ''
             const langName = language === 'uk' ? 'ua' : language
             const subdir = language === def ? '' : `/${langName}`
 
@@ -68,7 +68,7 @@ export default {
       return [
         ...(await getRoutes('pages')),
         ...(await getRoutes('posts')),
-        // ...(await getRoutes('products')),
+        ...(await getRoutes('products')),
       ]
     },
   },

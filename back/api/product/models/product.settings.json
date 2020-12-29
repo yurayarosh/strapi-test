@@ -25,10 +25,6 @@
     },
     "alias": {
       "type": "string"
-    },
-    "parent_page": {
-      "via": "products",
-      "model": "page"
     }
   }
 }

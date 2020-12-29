@@ -1,5 +1,5 @@
 import homePath from '@/mixins/home-path'
-import { PAGE, POST } from '@/assets/scripts/pageTypes'
+import { PAGE, POST, PRODUCT } from '@/assets/scripts/pageTypes'
 import { getPostTitle } from '@/assets/scripts/helpers'
 
 export default {
@@ -16,9 +16,8 @@ export default {
       let parents = this.pageData.parents_pages || []
       let parentPage = {}
 
-      if (pageType === POST) {
-        parentPage = this.postsPage
-      }
+      if (pageType === POST) parentPage = this.postsPage
+      if (pageType === PRODUCT) parentPage = this.productsPage
 
       if (pageType !== PAGE) {
         if (parentPage?.parents_pages) parents = [...parentPage.parents_pages, parentPage]
@@ -56,6 +55,7 @@ export default {
         let text
         if (type === PAGE) text = navItem?.[`title_${this.LANGUAGE}`]
         if (type === POST) text = getPostTitle(navItem?.[`title_${this.LANGUAGE}`])
+        if (type === PRODUCT) text = navItem?.[`title_${this.LANGUAGE}`]
 
         return {
           text,

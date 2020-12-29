@@ -64,7 +64,7 @@ export async function createRouter() {
     routes: [
       ...(await getRoutes('pages', SinglePage)), 
       ...(await getRoutes('posts', SinglePost)),
-      // ...(await getRoutes('products', SingleProduct)),
+      ...(await getRoutes('products', SingleProduct)),
     ],
   })
 }
