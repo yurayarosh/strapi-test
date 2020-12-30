@@ -54,7 +54,7 @@ export default {
           items.forEach(({ alias }) => {
             if (!alias) alias = ''
             const langName = language === 'uk' ? 'ua' : language
-            const subdir = language === def ? '' : `/${langName}`
+            const subdir = language === def || !langName ? '' : `/${langName}`
 
             routes.push({
               route: `${subdir}/${alias}`,

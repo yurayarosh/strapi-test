@@ -37,7 +37,7 @@ const getRoutes = async (collection = 'pages', component) => {
     items.forEach(({ alias, id }) => {
       if (!alias) alias = ''
       const langName = language === 'uk' ? 'ua' : language
-      const subdir = language === def ? '' : `/${langName}`
+      const subdir = language === def || !langName ? '' : `/${langName}`
       let name = ''
 
       if (alias) name = language === def ? alias : `${alias}---${langName}`
