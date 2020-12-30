@@ -75,7 +75,7 @@ export default {
 
   &__link
     +tr(color .3s)
-    +hover-focus
+    +hover
       @extend #{$this}__link--current
     
     &--current

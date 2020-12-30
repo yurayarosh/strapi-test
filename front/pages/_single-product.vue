@@ -6,7 +6,7 @@
 
     <section class="section">
       <div v-if="isLoaded" class="container">
-        this is product
+        <h1>{{ pageData[`title_${LANGUAGE}`] }}</h1>
       </div>
 
       <div v-else class="container">
@@ -30,7 +30,7 @@ export default {
     })
     this.productsPage = (
       await this.$store.dispatch('fetchCollection', {
-        collection: 'products',
+        collection: 'pages',
         filter: { alias: PRODUCTS },
       })
     )[0]
@@ -44,8 +44,6 @@ export default {
   },
   mounted() {
     this.isLoaded = true
-
-    console.log(this.pageData)
   },
 }
 </script>

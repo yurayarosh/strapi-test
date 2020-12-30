@@ -8,11 +8,11 @@
     <page-products v-else-if="pageName === pageTypes.PRODUCTS" :page-data="pageData" />
     <page v-else :page-data="pageData" />
 
-    <section class="section">
+    <!-- <section class="section">
       <div class="container">
         <v-feedback-form v-if="feedbackForm" :form="feedbackForm" />
       </div>
-    </section>
+    </section> -->
   </fragment>
 </template>
 

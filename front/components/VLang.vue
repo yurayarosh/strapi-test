@@ -65,6 +65,9 @@ export default {
     +notlast
       margin-right: 10px
 
+    &--current
+      color: $dark
+
   &__link
     +hover-focus
       text-decoration: underline
