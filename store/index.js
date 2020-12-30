@@ -3,7 +3,7 @@ export const state = () => ({
 })
 
 export const actions = {
-  async fetchCollection(ctx, { collection, filter, id }) {
+  async fetchCollection(ctx, { collection = '', filter, id }) {
     let filterString = ''
 
     if (filter) {
