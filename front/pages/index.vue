@@ -9,13 +9,13 @@
           >Strapi open source Node.js Headless CMS</a
         >
       </p>
-      <h2 class="title title--h3">Access to admin panel:</h2>
+      <!-- <h2 class="title title--h3">Access to admin panel:</h2>
 
       <ul class="list">
         <li><a :href="`${BASE_URL_BACK}/admin`" class="link" target="_blank">{{ `${BASE_URL_BACK}/admin` }}</a></li>
         <li>Email: {{ ADMIN_GUEST_LOGIN }}</li>
         <li>Password: {{ ADMIN_GUEST_PASSWORD }}</li>
-      </ul>
+      </ul> -->
     </div>
   </section>
 </template>
