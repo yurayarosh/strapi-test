@@ -5,7 +5,7 @@
         <nuxt-link
           :to="item.alias || homePath"
           class="nav__link"
-          exactActiveClass="nav__link--current"
+          exact-active-class="nav__link--current"
           >{{ item.caption }}</nuxt-link
         >
       </li>
@@ -34,6 +34,7 @@ export default {
           return {
             caption: item[`title_${this.LANGUAGE}`],
             alias: item.page.alias,
+            // alias: `${process.env.BASE_URL}`,
           }
         })
       }
@@ -53,6 +54,9 @@ export default {
       if (this.isHome && i === 0) return false
       return true
     },
+  },
+  mounted() {
+    console.log(this.$route)
   },
 }
 </script>
