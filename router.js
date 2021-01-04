@@ -56,6 +56,8 @@ const getRoutes = async (collection = 'pages', component) => {
     })
   })
 
+  console.log({ routes })
+
   return routes
 }
 
@@ -63,7 +65,7 @@ export async function createRouter() {
   return new Router({
     mode: 'history',
     routes: [
-      ...(await getRoutes('pages', SinglePage)), 
+      ...(await getRoutes('pages', SinglePage)),
       // ...(await getRoutes('posts', SinglePost)),
       // ...(await getRoutes('products', SingleProduct)),
     ],
