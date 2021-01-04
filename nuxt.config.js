@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { langConfig } from './assets/scripts/utils'
+// import axios from 'axios'
+// import { langConfig } from './assets/scripts/utils'
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
