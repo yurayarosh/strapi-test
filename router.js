@@ -63,8 +63,8 @@ export async function createRouter() {
     mode: 'history',
     routes: [
       ...(await getRoutes('pages', SinglePage)), 
-      ...(await getRoutes('posts', SinglePost)),
-      ...(await getRoutes('products', SingleProduct)),
+      // ...(await getRoutes('posts', SinglePost)),
+      // ...(await getRoutes('products', SingleProduct)),
     ],
   })
 }

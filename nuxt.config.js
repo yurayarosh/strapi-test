@@ -66,9 +66,11 @@ export default {
       }
 
       return [
-        ...(await getRoutes('pages')),
-        ...(await getRoutes('posts')),
-        ...(await getRoutes('products')),
+        { route: '/' },
+        { route: '/ua/' },
+        // ...(await getRoutes('pages')),
+        // ...(await getRoutes('posts')),
+        // ...(await getRoutes('products')),
       ]
     },
   },

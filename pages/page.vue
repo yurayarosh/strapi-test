@@ -28,12 +28,12 @@ import language from '@/mixins/language'
 
 export default {
   name: 'Page',
+  mixins: [language],
   props: {
     pageData: {
       type: Object,
       required: true,
     },
-  },
-  mixins: [language],
+  },  
 }
 </script>
