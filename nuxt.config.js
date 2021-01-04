@@ -5,6 +5,11 @@ export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
 
+  env: {
+    BASE_URL: process.env.BASE_URL,
+    BASE_URL_BACK: process.env.BASE_URL_BACK,
+  },
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'new-nuxt',
