@@ -15,6 +15,7 @@ const getRoutes = async (collection = 'pages', component) => {
   const routes = []
 
   try {
+    console.log({ BASE_URL_BACK: process.env.BASE_URL_BACK })
     const response = await axios.get(`${process.env.BASE_URL_BACK}/${collection}`)
     const { data: items } = response
     let pageType
