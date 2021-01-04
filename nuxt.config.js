@@ -1,6 +1,28 @@
 import axios from 'axios'
 import { langConfig } from './assets/scripts/utils'
 
+const getRoutes = async (collection = 'pages') => {
+  const { default: def, languages } = langConfig
+  const response = await axios.get(`${process.env.BASE_URL_BACK}/${collection}`)
+  const { data: items } = response
+
+  const routes = []
+
+  languages.forEach(language => {
+    items.forEach(({ alias }) => {
+      if (!alias) alias = ''
+      const langName = language === 'uk' ? 'ua' : language
+      const subdir = language === def || !langName ? '' : `/${langName}`
+
+      routes.push({
+        route: `${subdir}/${alias}`,
+      })
+    })
+  })
+
+  return routes
+}
+
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -38,6 +60,7 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     '@nuxtjs/router',
+    '@nuxtjs/pwa',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -53,28 +76,6 @@ export default {
 
   generate: {
     async routes() {
-      const getRoutes = async (collection = 'pages') => {
-        const { default: def, languages } = langConfig
-        const response = await axios.get(`${process.env.BASE_URL_BACK}/${collection}`)
-        const { data: items } = response
-
-        const routes = []
-
-        languages.forEach(language => {
-          items.forEach(({ alias }) => {
-            if (!alias) alias = ''
-            const langName = language === 'uk' ? 'ua' : language
-            const subdir = language === def || !langName ? '' : `/${langName}`
-
-            routes.push({
-              route: `${subdir}/${alias}`,
-            })
-          })
-        })
-
-        return routes
-      }
-
       return [
         ...(await getRoutes('pages')),
         ...(await getRoutes('posts')),
@@ -82,4 +83,21 @@ export default {
       ]
     },
   },
+
+  pwa: {
+    icon: {
+      source: '/icon.png',
+      sizes: [64, 120, 144, 152, 192, 384, 512],
+    },
+    manifest: {
+      name: 'My Awesome App',
+      lang: 'fa',
+      useWebmanifestExtension: false,
+      theme_color: '#ffffff',
+    },
+    // workbox: {
+    //   cachingExtensions: '@/plugins/workbox-sync.js',
+    //   enabled: true //should be off actually per workbox docs due to complications when used in prod
+    // },
+  }
 }
