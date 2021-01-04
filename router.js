@@ -41,6 +41,7 @@ const getRoutes = async (collection = 'pages', component) => {
       let name = ''
 
       if (alias) name = language === def ? alias : `${alias}---${langName}`
+      if (alias === '') name = language === def ? 'home' : `home---${langName}`
 
       routes.push({
         name,
