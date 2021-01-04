@@ -15,7 +15,6 @@ const getRoutes = async (collection = 'pages', component) => {
   const routes = []
 
   try {
-    console.log({ BASE_URL_BACK: process.env.BASE_URL_BACK })
     const response = await axios.get(`${process.env.BASE_URL_BACK}/${collection}`)
     const { data: items } = response
     let pageType
@@ -43,7 +42,6 @@ const getRoutes = async (collection = 'pages', component) => {
         let name = ''
 
         if (alias) name = language === def ? alias : `${alias}---${langName}`
-        if (alias === '') name = language === def ? 'home' : `home---${langName}`
 
         routes.push({
           name,
@@ -57,8 +55,6 @@ const getRoutes = async (collection = 'pages', component) => {
         })
       })
     })
-
-    console.log({ routes })
   } catch (error) {
     console.error('Fetching routes error', error)
   }
@@ -71,46 +67,8 @@ export async function createRouter() {
     mode: 'history',
     routes: [
       ...(await getRoutes('pages', SinglePage)),
-      // ...(await getRoutes('posts', SinglePost)),
-      // ...(await getRoutes('products', SingleProduct)),
+      ...(await getRoutes('posts', SinglePost)),
+      ...(await getRoutes('products', SingleProduct)),
     ],
-    // routes: [
-    //   {
-    //     name: '',
-    //     component: [Object],
-    //     path: '/',
-    //     meta: [Object]
-    //   },
-    //   {
-    //     name: 'posts',
-    //     component: [Object],
-    //     path: '/posts',
-    //     meta: [Object]
-    //   },
-    //   {
-    //     name: 'products',
-    //     component: [Object],
-    //     path: '/products',
-    //     meta: [Object]
-    //   },
-    //   {
-    //     name: '',
-    //     component: [Object],
-    //     path: '/ua/',
-    //     meta: [Object]
-    //   },
-    //   {
-    //     name: 'posts---ua',
-    //     component: [Object],
-    //     path: '/ua/posts',
-    //     meta: [Object]
-    //   },
-    //   {
-    //     name: 'products---ua',
-    //     component: [Object],
-    //     path: '/ua/products',
-    //     meta: [Object]
-    //   }
-    // ]
   })
 }

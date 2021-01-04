@@ -1,5 +1,5 @@
-// import axios from 'axios'
-// import { langConfig } from './assets/scripts/utils'
+import axios from 'axios'
+import { langConfig } from './assets/scripts/utils'
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
@@ -48,34 +48,32 @@ export default {
 
   generate: {
     async routes() {
-      // const getRoutes = async (collection = 'pages') => {
-      //   const { default: def, languages } = langConfig
-      //   const response = await axios.get(`${process.env.BASE_URL_BACK}/${collection}`)
-      //   const { data: items } = response
+      const getRoutes = async (collection = 'pages') => {
+        const { default: def, languages } = langConfig
+        const response = await axios.get(`${process.env.BASE_URL_BACK}/${collection}`)
+        const { data: items } = response
 
-      //   const routes = []
+        const routes = []
 
-      //   languages.forEach(language => {
-      //     items.forEach(({ alias }) => {
-      //       if (!alias) alias = ''
-      //       const langName = language === 'uk' ? 'ua' : language
-      //       const subdir = language === def || !langName ? '' : `/${langName}`
+        languages.forEach(language => {
+          items.forEach(({ alias }) => {
+            if (!alias) alias = ''
+            const langName = language === 'uk' ? 'ua' : language
+            const subdir = language === def || !langName ? '' : `/${langName}`
 
-      //       routes.push({
-      //         route: `${subdir}/${alias}`,
-      //       })
-      //     })
-      //   })
+            routes.push({
+              route: `${subdir}/${alias}`,
+            })
+          })
+        })
 
-      //   return routes
-      // }
+        return routes
+      }
 
       return [
-        { route: '/' },
-        { route: '/ua/' },
-        // ...(await getRoutes('pages')),
-        // ...(await getRoutes('posts')),
-        // ...(await getRoutes('products')),
+        ...(await getRoutes('pages')),
+        ...(await getRoutes('posts')),
+        ...(await getRoutes('products')),
       ]
     },
   },
