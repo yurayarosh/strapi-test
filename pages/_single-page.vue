@@ -35,13 +35,13 @@ export default {
     // PageProducts,
   },
   // mixins: [homePath, microdata, head],
-  async fetch() {
-    this.pageData = await this.$store.dispatch('fetchCollection', {
-      collection: 'pages',
-      id: this.$route.meta.id,
-    })
-    this.feedbackForm = await this.$store.dispatch('form/fetchFeedbackForm')
-  },
+  // async fetch() {
+  //   this.pageData = await this.$store.dispatch('fetchCollection', {
+  //     collection: 'pages',
+  //     id: this.$route.meta.id,
+  //   })
+  //   this.feedbackForm = await this.$store.dispatch('form/fetchFeedbackForm')
+  // },
   data() {
     return {
       feedbackForm: null,
