@@ -23,15 +23,19 @@ export default {
         if (parentPage?.parents_pages) parents = [...parentPage.parents_pages, parentPage]
       }
 
-      const [currentNavItem] =
-        pageType !== PAGE
-          ? []
-          : this.$store.getters['pages/navList'].filter(({ id }) => id === this.$route.meta.id)
+      let currentNavItem
+      if (pageType === PAGE && this.$store.getters['pages/navList']) {
+        ;[currentNavItem] = this.$store.getters['pages/navList'].filter(
+          ({ page: { id } }) => id === this.$route.meta.id
+        )
+      } else if (this.pageData) {
+        currentNavItem = { ...this.pageData }
+      }
 
       const list = parents.map(page => {
-        const [navItem] = this.$store.getters['pages/navList'].filter(
+        const navItem = this.$store.getters['pages/navList']?.filter(
           ({ id }) => id === page.nav_item || id === page.nav_item.id
-        )
+        )[0]
 
         return {
           page,
@@ -43,7 +47,7 @@ export default {
       const currentPage = {
         isCurrent: true,
         page: this.pageData,
-        navItem: currentNavItem || { ...this.pageData },
+        navItem: { ...this.pageData },
         type: pageType,
       }
 
@@ -100,8 +104,8 @@ export default {
 
         const name =
           this.$route.meta.type === POST
-            ? getPostTitle(navItem[`title_${this.LANGUAGE}`])
-            : navItem[`title_${this.LANGUAGE}`]
+            ? getPostTitle(navItem?.[`title_${this.LANGUAGE}`])
+            : navItem?.[`title_${this.LANGUAGE}`]
 
         return {
           '@type': 'ListItem',

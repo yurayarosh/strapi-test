@@ -23,7 +23,14 @@ import { PRODUCTS } from '@/assets/scripts/pageTypes'
 
 export default {
   mixins: [microdata, head],
-  async fetch() {
+  data() {
+    return {
+      isLoaded: false,
+      pageData: {},
+      productsPage: {},
+    }
+  },
+  async created() {
     this.pageData = await this.$store.dispatch('fetchCollection', {
       collection: 'products',
       id: this.$route.meta.id,
@@ -34,13 +41,6 @@ export default {
         filter: { alias: PRODUCTS },
       })
     )[0]
-  },
-  data() {
-    return {
-      isLoaded: false,
-      pageData: {},
-      productsPage: {},
-    }
   },
   mounted() {
     this.isLoaded = true

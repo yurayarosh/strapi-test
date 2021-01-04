@@ -35,13 +35,6 @@ export default {
     PageProducts,
   },
   mixins: [homePath, microdata, head],
-  async fetch() {
-    this.pageData = await this.$store.dispatch('fetchCollection', {
-      collection: 'pages',
-      id: this.$route.meta.id,
-    })
-    this.feedbackForm = await this.$store.dispatch('form/fetchFeedbackForm')
-  },
   data() {
     return {
       feedbackForm: null,
@@ -60,6 +53,13 @@ export default {
       const [name] = this.$route.name.split('---')
       return name
     },
+  },
+  async created() {
+    this.pageData = await this.$store.dispatch('fetchCollection', {
+      collection: 'pages',
+      id: this.$route.meta.id,
+    })
+    this.feedbackForm = await this.$store.dispatch('form/fetchFeedbackForm')
   },
 }
 </script>

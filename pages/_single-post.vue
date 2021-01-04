@@ -23,7 +23,14 @@ import { POSTS } from '@/assets/scripts/pageTypes'
 
 export default {
   mixins: [microdata, head],
-  async fetch() {
+  data() {
+    return {
+      pageData: {},
+      postsPage: {},
+      isLoaded: false,
+    }
+  },
+  async created() {
     this.pageData = await this.$store.dispatch('fetchCollection', {
       collection: 'posts',
       id: this.$route.meta.id,
@@ -34,13 +41,6 @@ export default {
         filter: { alias: POSTS },
       })
     )[0]
-  },
-  data() {
-    return {
-      pageData: {},
-      postsPage: {},
-      isLoaded: false,
-    }
   },
   mounted() {
     this.isLoaded = true

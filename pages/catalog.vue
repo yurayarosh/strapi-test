@@ -29,13 +29,13 @@ export default {
       required: true,
     },
   },
-  async fetch() {
-    this.products = await this.$store.dispatch('fetchCollection', { collection: 'products' })
-  },
   data() {
     return {
       products: [],
     }
+  },
+  async created() {
+    this.products = await this.$store.dispatch('fetchCollection', { collection: 'products' })
   },
 }
 </script>

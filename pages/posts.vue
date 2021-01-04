@@ -30,13 +30,13 @@ export default {
       required: true,
     },
   },
-  async fetch() {
-    this.posts = await this.$store.dispatch('fetchCollection', { collection: 'posts' })
-  },
   data() {
     return {
       posts: [],
     }
+  },
+  async created() {
+    this.posts = await this.$store.dispatch('fetchCollection', { collection: 'posts' })
   },
 }
 </script>
