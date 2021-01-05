@@ -1,31 +1,31 @@
-import axios from 'axios'
-import { langConfig } from './assets/scripts/utils'
+// import axios from 'axios'
+// import { langConfig } from './assets/scripts/utils'
 
-const getRoutes = async (collection = 'pages') => {
-  const { default: def, languages } = langConfig
-  const response = await axios.get(`${process.env.BASE_URL_BACK}/${collection}`)
-  const { data: items } = response
+// const getRoutes = async (collection = 'pages') => {
+//   const { default: def, languages } = langConfig
+//   const response = await axios.get(`${process.env.BASE_URL_BACK}/${collection}`)
+//   const { data: items } = response
 
-  const routes = []
+//   const routes = []
 
-  languages.forEach(language => {
-    items.forEach(({ alias }) => {
-      if (!alias) alias = ''
-      const langName = language === 'uk' ? 'ua' : language
-      const subdir = language === def || !langName ? '' : `/${langName}`
+//   languages.forEach(language => {
+//     items.forEach(({ alias }) => {
+//       if (!alias) alias = ''
+//       const langName = language === 'uk' ? 'ua' : language
+//       const subdir = language === def || !langName ? '' : `/${langName}`
 
-      routes.push({
-        route: `${subdir}/${alias}`,
-      })
-    })
-  })
+//       routes.push({
+//         route: `${subdir}/${alias}`,
+//       })
+//     })
+//   })
 
-  return routes
-}
+//   return routes
+// }
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
-  target: 'static',
+  target: 'server',
 
   env: {
     BASE_URL: process.env.BASE_URL,
@@ -74,15 +74,15 @@ export default {
   //   middleware: 'trailingSlashRedirect',
   // },
 
-  generate: {
-    async routes() {
-      return [
-        ...(await getRoutes('pages')),
-        ...(await getRoutes('posts')),
-        ...(await getRoutes('products')),
-      ]
-    },
-  },
+  // generate: {
+  //   async routes() {
+  //     return [
+  //       ...(await getRoutes('pages')),
+  //       ...(await getRoutes('posts')),
+  //       ...(await getRoutes('products')),
+  //     ]
+  //   },
+  // },
 
   pwa: {
     icon: {
