@@ -9,17 +9,19 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "strapi-provider-upload-cloudinary": "^3.4.1"
+  },
   "dependencies": {
     "strapi": "3.4.1",
     "strapi-admin": "3.4.1",
-    "strapi-utils": "3.4.1",
-    "strapi-plugin-content-type-builder": "3.4.1",
+    "strapi-connector-mongoose": "3.4.1",
     "strapi-plugin-content-manager": "3.4.1",
-    "strapi-plugin-users-permissions": "3.4.1",
+    "strapi-plugin-content-type-builder": "3.4.1",
     "strapi-plugin-email": "3.4.1",
     "strapi-plugin-upload": "3.4.1",
-    "strapi-connector-mongoose": "3.4.1"
+    "strapi-plugin-users-permissions": "3.4.1",
+    "strapi-utils": "3.4.1"
   },
   "author": {
     "name": "A Strapi developer"
