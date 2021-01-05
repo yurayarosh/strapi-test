@@ -1,3 +1,4 @@
+// TODO: use if target: 'static' is seted.
 // import axios from 'axios'
 // import { langConfig } from './assets/scripts/utils'
 
@@ -74,6 +75,7 @@ export default {
     middleware: 'trailingSlashRedirect',
   },
 
+  // TODO: use if target: 'static' is seted.
   // generate: {
   //   async routes() {
   //     return [
@@ -87,7 +89,6 @@ export default {
   pwa: {
     icon: {
       source: '/icon.png',
-      sizes: [64, 120, 144, 152, 192, 384, 512],
     },
     manifest: {
       name: 'My Awesome App',

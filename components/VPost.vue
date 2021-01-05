@@ -2,8 +2,8 @@
   <nuxt-link :to="url" class="post">
     <span class="post__img">
       <img
-        v-if="img"
-        :src="`${img.formats.medium.url}`"
+        v-if="imgUrl"
+        :src="`${imgUrl}`"
         :alt="img.alternativeText"
         :title="img.caption"
       />
@@ -51,6 +51,12 @@ export default {
     return {
       BASE_URL_BACK: process.env.BASE_URL_BACK,
     }
+  },
+  computed: {
+    imgUrl() {
+      if (!this.img) return ''
+      return this.img.formats.medium?.url || this.img.url
+    },
   },
   methods: {
     getPostTitle,
