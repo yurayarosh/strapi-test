@@ -41,7 +41,7 @@ export default {
   +tr(background-color .4s, border-color .4s, color .4s)
 
   +hover-focus
-    &#{$this}--no-hover
+    &:not(#{$this}--no-hover)
       background-color: transparent
       color: $black
 

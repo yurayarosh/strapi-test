@@ -7,6 +7,19 @@
     <section class="section">
       <div v-if="isLoaded" class="container">
         <h1>{{ pageData[`title_${LANGUAGE}`] }}</h1>
+
+        <img
+          v-if="imgUrl"
+          :src="`${imgUrl}`"
+          :alt="this.pageData.img.alternativeText"
+          :title="this.pageData.img.caption"
+        />
+
+        <p>
+          <strong>{{ pageData.price | formatCurrency }}</strong>
+        </p>
+
+        <v-btn type="button" @click="onAddToCartBtnClick">Добавить в корзину</v-btn>
       </div>
 
       <div v-else class="container">
@@ -30,6 +43,12 @@ export default {
       productsPage: {},
     }
   },
+  computed: {
+    imgUrl() {
+      if (!this.pageData.img) return ''
+      return this.pageData.img.formats.medium?.url || this.pageData.img.url
+    },
+  },
   async created() {
     this.pageData = await this.$store.dispatch('fetchCollection', {
       collection: 'products',
@@ -41,6 +60,13 @@ export default {
         filter: { alias: PRODUCTS },
       })
     )[0]
+  },
+  methods: {
+    onAddToCartBtnClick() {
+      this.$store.commit('cart/add', this.pageData)
+
+      console.log(this.$store.getters['cart/items'])
+    },
   },
   mounted() {
     this.isLoaded = true

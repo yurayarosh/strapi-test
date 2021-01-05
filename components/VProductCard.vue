@@ -1,17 +1,19 @@
 <template>
   <component :is="url ? 'nuxt-link' : 'div'" :to="url || false" class="card">
     <span class="card__img">
-      <img
-        v-if="img"
-        :src="`${img.formats.medium.url}`"
-        :alt="img.alternativeText"
-        :title="img.caption"
-      />
+      <img v-if="imgUrl" :src="`${imgUrl}`" :alt="img.alternativeText" :title="img.caption" />
     </span>
     <span class="card__content">
       <span class="card__title">{{ title }}</span>
 
       <span v-if="description" class="card__text">{{ description }}</span>
+
+      <span class="card__footer">
+        <span class="card__price">{{ price }}</span>
+        <span v-if="quantity" class="card__quantity"
+          >Количество: <input type="number" :value="quantity" @change="onQuantityInputChange"
+        /></span>
+      </span>
     </span>
   </component>
 </template>
@@ -20,6 +22,10 @@
 export default {
   name: 'VProductCard',
   props: {
+    itemId: {
+      type: [String, Number],
+      default: '',
+    },
     url: {
       type: String,
       default: '',
@@ -27,6 +33,14 @@ export default {
     img: {
       type: Object,
       required: true,
+    },
+    price: {
+      type: String,
+      required: true,
+    },
+    quantity: {
+      type: [String, Number],
+      default: '',
     },
     title: {
       type: String,
@@ -41,6 +55,29 @@ export default {
     return {
       BASE_URL_BACK: process.env.BASE_URL_BACK,
     }
+  },
+  computed: {
+    imgUrl() {
+      if (!this.img) return ''
+      return this.img.formats.medium?.url || this.img.url
+    },
+    productsInCart() {
+      return this.$store.getters['cart/items']
+    },
+  },
+  methods: {
+    onQuantityInputChange({ target: { value } }) {
+      const record = this.productsInCart.find(({ id }) => id === this.itemId)
+      const recordIndex = this.productsInCart.indexOf(record)
+
+      const updatedProducts = [...this.productsInCart]
+      updatedProducts.splice(recordIndex, 1, {
+        ...record,
+        quantity: +value,
+      })
+
+      this.$store.commit('cart/setItems', updatedProducts)
+    },
   },
 }
 </script>
@@ -73,4 +110,7 @@ export default {
 
   &__text
     flex-grow: 1
+
+  &__price
+    display: block
 </style>

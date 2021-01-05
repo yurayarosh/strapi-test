@@ -12,3 +12,10 @@ Vue.filter('formatDate', (value, lang) => {
     minute: '2-digit',
   })
 })
+
+Vue.filter('formatCurrency', value => {
+  return new Intl.NumberFormat('uk-UK', {
+    style: 'currency',
+    currency: 'UAH',
+  }).format(value)
+})

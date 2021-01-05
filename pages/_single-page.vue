@@ -6,6 +6,7 @@
     <page-home v-if="pageName === pageTypes.HOME" :page-data="pageData" />
     <page-posts v-else-if="pageName === pageTypes.POSTS" :page-data="pageData" />
     <page-products v-else-if="pageName === pageTypes.PRODUCTS" :page-data="pageData" />
+    <page-cart v-else-if="pageName === pageTypes.CART" :page-data="pageData" />
     <page v-else :page-data="pageData" />
 
     <!-- <section class="section">
@@ -22,9 +23,10 @@ import microdata from '@/mixins/microdata'
 import PageHome from '@/pages/index'
 import PagePosts from '@/pages/posts'
 import PageProducts from '@/pages/catalog'
+import PageCart from '@/pages/cart'
 import Page from '@/pages/page'
 import head from '@/mixins/head'
-import { POSTS, PRODUCTS } from '@/assets/scripts/pageTypes'
+import { POSTS, PRODUCTS, CART } from '@/assets/scripts/pageTypes'
 
 export default {
   name: 'SinglePage',
@@ -33,6 +35,7 @@ export default {
     PageHome,
     PagePosts,
     PageProducts,
+    PageCart,
   },
   mixins: [homePath, microdata, head],
   data() {
@@ -43,6 +46,7 @@ export default {
         HOME: 'home',
         POSTS,
         PRODUCTS,
+        CART,
       },
     }
   },

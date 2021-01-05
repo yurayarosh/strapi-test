@@ -4,6 +4,7 @@
       <ul v-if="products.length > 0" class="products">
         <li v-for="product in products" :key="product.id" class="products__item">
           <v-product-card
+            :price="product.price | formatCurrency"
             :url="product.alias"
             :title="product[`title_${LANGUAGE}`]"
             :img="product.img"
