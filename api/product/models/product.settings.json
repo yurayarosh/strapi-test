@@ -40,6 +40,10 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "price": {
+      "type": "string",
+      "default": "100"
     }
   }
 }
