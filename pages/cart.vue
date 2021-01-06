@@ -7,6 +7,7 @@
         <ul class="products">
           <li v-for="product in products" :key="product.id" class="products__item">
             <v-product-card
+              :remove="true"
               :item-id="product.id"
               :price="product.price | formatCurrency"
               :title="product[`title_${LANGUAGE}`]"
@@ -45,9 +46,6 @@ export default {
       return this.$store.getters['cart/price']
     },
   },
-  // mounted() {
-  //   console.log(this.products)
-  // },
 }
 </script>
 

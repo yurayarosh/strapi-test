@@ -11,17 +11,26 @@
       <span class="card__footer">
         <span class="card__price">{{ price }}</span>
         <span v-if="quantity" class="card__quantity"
-          >Количество: <input type="number" :value="quantity" @change="onQuantityInputChange"
+          >{{ cartQuantityTitle }} <input type="number" :value="quantity" @change="onQuantityInputChange"
         /></span>
+
+        <button class="close" v-if="remove" type="button" @click="onRemoveBtnClick"></button>
       </span>
     </span>
   </component>
 </template>
 
 <script>
+import language from '@/mixins/language'
+
 export default {
   name: 'VProductCard',
+  mixins: [language],
   props: {
+    remove: {
+      type: Boolean,
+      default: () => false,
+    },
     itemId: {
       type: [String, Number],
       default: '',
@@ -64,17 +73,32 @@ export default {
     productsInCart() {
       return this.$store.getters['cart/items']
     },
+    record() {
+      const meta = this.productsInCart.find(({ id }) => id === this.itemId)
+      const index = this.productsInCart.indexOf(meta)
+
+      return {
+        meta,
+        index,
+      }
+    },
+    cartQuantityTitle() {
+      return this.$store.getters['cart/translations']?.[`quantity_${this.LANGUAGE}`]
+    },
   },
   methods: {
     onQuantityInputChange({ target: { value } }) {
-      const record = this.productsInCart.find(({ id }) => id === this.itemId)
-      const recordIndex = this.productsInCart.indexOf(record)
-
       const updatedProducts = [...this.productsInCart]
-      updatedProducts.splice(recordIndex, 1, {
-        ...record,
+      updatedProducts.splice(this.record.index, 1, {
+        ...this.record.meta,
         quantity: +value,
       })
+
+      this.$store.commit('cart/setItems', updatedProducts)
+    },
+    onRemoveBtnClick() {
+      const updatedProducts = [...this.productsInCart]
+      updatedProducts.splice(this.record.index, 1)
 
       this.$store.commit('cart/setItems', updatedProducts)
     },

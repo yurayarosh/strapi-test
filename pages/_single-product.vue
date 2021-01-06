@@ -19,7 +19,7 @@
           <strong>{{ pageData.price | formatCurrency }}</strong>
         </p>
 
-        <v-btn type="button" @click="onAddToCartBtnClick">Добавить в корзину</v-btn>
+        <v-btn v-if="cartAddButton" type="button" @click="onAddToCartBtnClick">{{ cartAddButton[`title_${LANGUAGE}`] }}</v-btn>
       </div>
 
       <div v-else class="container">
@@ -33,6 +33,7 @@
 import microdata from '@/mixins/microdata'
 import head from '@/mixins/head'
 import { PRODUCTS } from '@/assets/scripts/pageTypes'
+import jsCookie from 'js-cookie'
 
 export default {
   mixins: [microdata, head],
@@ -47,6 +48,9 @@ export default {
     imgUrl() {
       if (!this.pageData.img) return ''
       return this.pageData.img.formats.medium?.url || this.pageData.img.url
+    },
+    cartAddButton() {
+      return this.$store.getters['cart/translations']?.add_button
     },
   },
   async created() {
@@ -64,8 +68,6 @@ export default {
   methods: {
     onAddToCartBtnClick() {
       this.$store.commit('cart/add', this.pageData)
-
-      console.log(this.$store.getters['cart/items'])
     },
   },
   mounted() {

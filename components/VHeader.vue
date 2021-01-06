@@ -11,8 +11,8 @@
 
         <v-nav class="header__nav" />
 
-        <nuxt-link class="header__cart" :to="cartPageUrl"
-          >cart <span>{{ cartQuantity }}</span></nuxt-link
+        <nuxt-link v-if="cartHeaderBtn" class="header__cart" :to="cartPageUrl"
+          >{{ cartHeaderBtn[`title_${LANGUAGE}`] }} <span>{{ cartQuantity }}</span></nuxt-link
         >
 
         <v-lang class="header__lang" />
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie'
+// import jsCookies from 'js-cookie'
 import homePath from '@/mixins/home-path'
 import { CART } from '@/assets/scripts/pageTypes'
 
@@ -40,11 +40,17 @@ export default {
       if (this.LANGUAGE === 'uk') return `/ua/${CART}`
       return `/${CART}`
     },
+    cartHeaderBtn() {
+      return this.$store.getters['cart/translations']?.header_button
+    },
   },
-  mounted() {
-    if (Cookies.get('cart')) {
-      const cartItems = JSON.parse(Cookies.get('cart'))
-      console.log({ cartItems })
+  async mounted() {
+    await this.$store.dispatch('cart/fetchCartTranslations')
+
+    // if (jsCookies.get('cart')) {
+    if (localStorage.getItem('cart')) {
+      // const cartItems = JSON.parse(jsCookies.get('cart'))
+      const cartItems = JSON.parse(localStorage.getItem('cart'))
       this.$store.commit('cart/setItems', cartItems)
     }
   },
