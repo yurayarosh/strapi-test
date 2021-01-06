@@ -26,6 +26,12 @@
       "type": "component",
       "repeatable": false,
       "component": "general.array"
+    },
+    "amount_ru": {
+      "type": "string"
+    },
+    "amount_uk": {
+      "type": "string"
     }
   }
 }
