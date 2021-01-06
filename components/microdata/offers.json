@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_microdata_offers",
+  "info": {
+    "name": "offers",
+    "icon": "air-freshener"
+  },
+  "options": {},
+  "attributes": {
+    "priceCurrency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "lowprice": {
+      "type": "decimal",
+      "default": 150
+    },
+    "highprice": {
+      "type": "decimal",
+      "default": 10000
+    },
+    "offerCount": {
+      "type": "decimal",
+      "default": 10
+    }
+  }
+}

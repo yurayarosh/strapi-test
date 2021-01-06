@@ -44,6 +44,11 @@
     "price": {
       "type": "string",
       "default": "100"
+    },
+    "microdata": {
+      "type": "component",
+      "repeatable": false,
+      "component": "microdata.microdata"
     }
   }
 }

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_microdata_microdata",
+  "info": {
+    "name": "product",
+    "icon": "adjust",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "offers": {
+      "type": "component",
+      "repeatable": false,
+      "component": "microdata.offers"
+    },
+    "aggregateRating": {
+      "type": "component",
+      "repeatable": false,
+      "component": "microdata.aggregate-rating"
+    }
+  }
+}

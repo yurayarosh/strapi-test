@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_microdata_aggregate_ratings",
+  "info": {
+    "name": "aggregateRating",
+    "icon": "allergies"
+  },
+  "options": {},
+  "attributes": {
+    "ratingValue": {
+      "type": "decimal",
+      "default": 4.9
+    },
+    "ratingCount": {
+      "type": "integer",
+      "default": 2990
+    }
+  }
+}
