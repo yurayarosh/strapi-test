@@ -14,8 +14,7 @@ export const actions = {
 
       commit('setNavList', navigation)
     } catch (error) {
-      // eslint-disable-next-line
-      console.error('server error')
+      console.error('Fetching nav-items error', error)
     }
   },
   async fetchNavItem(ctx, id) {
@@ -23,8 +22,7 @@ export const actions = {
       const response = await fetch(`${process.env.BASE_URL_BACK}/nav-items/${id}`)
       return await response.json()
     } catch (error) {
-      // eslint-disable-next-line
-      console.error(error)
+      console.error(`Fetching nav-item id=${id} error`, error)
     }
   },
 }

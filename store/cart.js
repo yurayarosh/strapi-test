@@ -36,25 +36,6 @@ export const mutations = {
       record.quantity++
     }
 
-    // if (jsCookies.get('cart')) {
-    //   const existed = JSON.parse(jsCookies.get('cart'))
-
-    //   if (existed !== state.items) {
-    //     console.log('update')
-    //     const state.items = [...state.items]
-
-    //     jsCookies.set('cart', state.items)
-    //     jsCookies.set('updatecart', state.items)
-
-    //     localStorage.setItem('cart', JSON.stringify(state.items))
-    //   }
-    // } else {
-    //   console.log('set new cookie')
-    //   jsCookies.set('cart', state.items)
-    // }
-
-    // console.log(JSON.parse(jsCookies.get('cart')))
-
     // jsCookies.set('cart', state.items)
     localStorage.setItem('cart', JSON.stringify(state.items))
   },
