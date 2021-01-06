@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "carts",
+  "info": {
+    "name": "cart",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "header_button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.array"
+    },
+    "quantity_ru": {
+      "type": "string"
+    },
+    "quantity_uk": {
+      "type": "string"
+    },
+    "add_button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.array"
+    }
+  }
+}
