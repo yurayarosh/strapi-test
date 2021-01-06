@@ -15,7 +15,7 @@
           :title="pageData.img.caption"
         />
 
-        <p>
+        <p v-if="pageData.price">
           <strong>{{ pageData.price | formatCurrency }}</strong>
         </p>
 
@@ -38,6 +38,18 @@ import { PRODUCTS } from '~/assets/scripts/pageTypes'
 
 export default {
   mixins: [microdata, head],
+  async fetch() {
+    this.pageData = await this.$store.dispatch('fetchCollection', {
+      collection: 'products',
+      id: this.$route.meta.id,
+    })
+    this.productsPage = (
+      await this.$store.dispatch('fetchCollection', {
+        collection: 'pages',
+        filter: { alias: PRODUCTS },
+      })
+    )[0]
+  },
   data() {
     return {
       isLoaded: false,
@@ -53,18 +65,6 @@ export default {
     cartAddButton() {
       return this.$store.getters['cart/translations']?.add_button
     },
-  },
-  async created() {
-    this.pageData = await this.$store.dispatch('fetchCollection', {
-      collection: 'products',
-      id: this.$route.meta.id,
-    })
-    this.productsPage = (
-      await this.$store.dispatch('fetchCollection', {
-        collection: 'pages',
-        filter: { alias: PRODUCTS },
-      })
-    )[0]
   },
   mounted() {
     this.isLoaded = true

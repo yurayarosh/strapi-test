@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import { langConfig } from '~/assets/scripts/utils'
 import homePath from '~/mixins/home-path'
 import language from '~/mixins/language'
+import { langConfig } from '~/assets/scripts/utils'
 
 export default {
   mixins: [homePath, language],

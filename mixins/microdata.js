@@ -129,7 +129,7 @@ export default {
         ? {
             '@context': 'http://schema.org',
             '@type': 'NewsArticle',
-            description: `${this.pageData[`description_${this.LANGUAGE}`]}`,
+            description: this.pageData[`description_${this.LANGUAGE}`],
             image: [
               {
                 '@context': 'http://schema.org',
@@ -159,7 +159,28 @@ export default {
           }
         : null
 
-    const objects = [organization, breadcrumbs, post]
+    const product =
+      this.$route.meta.type === PRODUCT
+        ? {
+            '@context': 'http://schema.org/',
+            '@type': 'Product',
+            name: this.pageData[`title_${this.LANGUAGE}`],
+            offers: {
+              '@type': 'AggregateOffer',
+              priceCurrency: this.pageData.microdata?.offers.priceCurrency,
+              lowprice: this.pageData.microdata?.offers.lowprice,
+              highprice: this.pageData.microdata?.offers.highprice,
+              offerCount: this.pageData.microdata?.offers.offerCount,
+            },
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: this.pageData.microdata?.aggregateRating.ratingValue,
+              ratingCount: this.pageData.microdata?.aggregateRating.ratingCount,
+            },
+          }
+        : null
+
+    const objects = [organization, breadcrumbs, post, product]
 
     return objects.filter(item => item)
   },
