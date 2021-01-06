@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import { langConfig } from '@/assets/scripts/utils'
-import language from '@/mixins/language'
+import { langConfig } from '~/assets/scripts/utils'
+import language from '~/mixins/language'
 
 export default {
   name: 'VLang',

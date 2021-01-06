@@ -1,6 +1,6 @@
 <template>
   <component :is="href ? 'a' : 'button'" v-bind="$attrs" class="btn" @click="onClick">
-    <slot/>
+    <slot />
   </component>
 </template>
 

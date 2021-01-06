@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import homePath from '@/mixins/home-path'
+import homePath from '~/mixins/home-path'
 
 export default {
   name: 'VNav',

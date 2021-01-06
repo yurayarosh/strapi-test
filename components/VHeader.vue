@@ -23,8 +23,8 @@
 
 <script>
 // import jsCookies from 'js-cookie'
-import homePath from '@/mixins/home-path'
-import { CART } from '@/assets/scripts/pageTypes'
+import homePath from '~/mixins/home-path'
+import { CART } from '~/assets/scripts/pageTypes'
 
 export default {
   name: 'VHeader',

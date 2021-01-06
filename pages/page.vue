@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import language from '@/mixins/language'
+import language from '~/mixins/language'
 
 export default {
   name: 'Page',
@@ -34,6 +34,6 @@ export default {
       type: Object,
       required: true,
     },
-  },  
+  },
 }
 </script>

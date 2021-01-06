@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import microdata from '@/mixins/microdata'
-import head from '@/mixins/head'
-import { POSTS } from '@/assets/scripts/pageTypes'
+import microdata from '~/mixins/microdata'
+import head from '~/mixins/head'
+import { POSTS } from '~/assets/scripts/pageTypes'
 
 export default {
   mixins: [microdata, head],

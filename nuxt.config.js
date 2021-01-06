@@ -1,6 +1,6 @@
 // TODO: use if target: 'static' is seted.
 // import axios from 'axios'
-// import { langConfig } from './assets/scripts/utils'
+import { langConfig } from './assets/scripts/utils'
 
 // const getRoutes = async (collection = 'pages') => {
 //   const { default: def, languages } = langConfig
@@ -35,7 +35,7 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'new-nuxt',
+    title: process.env.BASE_NAME,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -44,14 +44,14 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['@/assets/styles/app.sass'],
+  css: ['~/assets/styles/app.sass'],
 
   styleResources: {
-    sass: ['@/assets/styles/helpers/_all.sass'],
+    sass: ['~/assets/styles/helpers/_all.sass'],
   },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['@/plugins/jsonld', '@/plugins/filters', '@/plugins/fragment'],
+  plugins: ['~/plugins/jsonld', '~/plugins/filters', '~/plugins/fragment'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -91,13 +91,13 @@ export default {
       source: '/icon.png',
     },
     manifest: {
-      name: 'My Awesome App',
-      lang: 'fa',
+      name: process.env.BASE_NAME,
+      lang: langConfig.default,
       useWebmanifestExtension: false,
       theme_color: '#ffffff',
     },
     // workbox: {
-    //   cachingExtensions: '@/plugins/workbox-sync.js',
+    //   cachingExtensions: '~/plugins/workbox-sync.js',
     //   enabled: true //should be off actually per workbox docs due to complications when used in prod
     // },
   }

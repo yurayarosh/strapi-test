@@ -19,7 +19,9 @@
 </template>
 
 <script>
-import language from '@/mixins/language'
+import language from '~/mixins/language'
+import { POSTS } from '~/assets/scripts/pageTypes'
+import { sortList } from '~/assets/scripts/helpers'
 
 export default {
   name: 'PagePosts',
@@ -36,7 +38,8 @@ export default {
     }
   },
   async created() {
-    this.posts = await this.$store.dispatch('fetchCollection', { collection: 'posts' })
+    this.posts = await this.$store.dispatch('fetchCollection', { collection: POSTS })
+    sortList(this.posts, 'date')
   },
 }
 </script>

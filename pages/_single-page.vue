@@ -18,15 +18,15 @@
 </template>
 
 <script>
-import homePath from '@/mixins/home-path'
-import microdata from '@/mixins/microdata'
-import PageHome from '@/pages/index'
-import PagePosts from '@/pages/posts'
-import PageProducts from '@/pages/catalog'
-import PageCart from '@/pages/cart'
-import Page from '@/pages/page'
-import head from '@/mixins/head'
-import { POSTS, PRODUCTS, CART } from '@/assets/scripts/pageTypes'
+import homePath from '~/mixins/home-path'
+import microdata from '~/mixins/microdata'
+import PageHome from '~/pages/index'
+import PagePosts from '~/pages/posts'
+import PageProducts from '~/pages/catalog'
+import PageCart from '~/pages/cart'
+import Page from '~/pages/page'
+import head from '~/mixins/head'
+import { POSTS, PRODUCTS, CART } from '~/assets/scripts/pageTypes'
 
 export default {
   name: 'SinglePage',

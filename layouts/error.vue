@@ -1,23 +1,25 @@
 <template>
   <section class="section">
-    this is error page
+    <div class="container">
+      this is error page
+    </div>
   </section>
 </template>
 
 <script>
-// export default {
-//   async mounted() {
-//     await this.$store.dispatch('posts/fetchPosts')
-//     this.posts = this.$store.getters['posts/posts']
+import { langConfig } from '~/assets/scripts/utils'
+import homePath from '~/mixins/home-path'
+import language from '~/mixins/language'
 
-//     const [singlePost] = this.posts.filter(({ alias }) => `/${alias}` === this.$route.path)
-//     const postAlias = singlePost?.alias
-
-//     // if (postAlias) this.$router.history.push(`/${}`)
-
-//     this.$route.params['post-url'] = postAlias
-
-//     console.log(this.$route)
-//   },
-// }
+export default {
+  mixins: [homePath, language],
+  computed: {
+    LANGUAGE() {
+      const [, lang] = this.$route.fullPath.split('/')
+      if (lang.length !== 2) return langConfig.default
+      if (lang === 'ua') return 'uk'
+      return lang
+    },
+  },
+}
 </script>

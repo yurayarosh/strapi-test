@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import setHTMLClassNames from '@/assets/scripts/setHTMLClassNames'
-import homePath from '@/mixins/home-path'
+import setHTMLClassNames from '~/assets/scripts/setHTMLClassNames'
+import homePath from '~/mixins/home-path'
 
 export default {
   mixins: [homePath],

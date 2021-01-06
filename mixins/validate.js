@@ -1,4 +1,4 @@
-import { req, minLength } from '@/assets/scripts/validations'
+import { req, minLength } from '~/assets/scripts/validations'
 
 export default {
   computed: {

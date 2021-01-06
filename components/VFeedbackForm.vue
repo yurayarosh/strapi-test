@@ -27,8 +27,8 @@
 
 <script>
 import { VueMaskDirective } from 'v-mask'
-import language from '@/mixins/language'
-import validate from '@/mixins/validate'
+import language from '~/mixins/language'
+import validate from '~/mixins/validate'
 
 export default {
   name: 'VFeedbackForm',

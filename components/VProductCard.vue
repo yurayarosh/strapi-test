@@ -11,7 +11,8 @@
       <span class="card__footer">
         <span class="card__price">{{ price }}</span>
         <span v-if="quantity" class="card__quantity"
-          >{{ cartQuantityTitle }} <input type="number" :value="quantity" @change="onQuantityInputChange"
+          >{{ cartQuantityTitle }}
+          <input type="number" :value="quantity" @change="onQuantityInputChange"
         /></span>
 
         <button class="close" v-if="remove" type="button" @click="onRemoveBtnClick"></button>
@@ -21,7 +22,7 @@
 </template>
 
 <script>
-import language from '@/mixins/language'
+import language from '~/mixins/language'
 
 export default {
   name: 'VProductCard',

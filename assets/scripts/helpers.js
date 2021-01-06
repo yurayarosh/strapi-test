@@ -67,3 +67,24 @@ export const getPostTitle = title => {
   // if (typeof window === 'undefined') return title
   return title?.replace(` - ${process.env.BASE_NAME}.`, '')
 }
+
+export const sortList = (list, type = 'date', options = {}) => {
+  if (type === 'date') {
+    return list.sort((a, b) => new Date(b.published_at) - new Date(a.published_at))
+  }
+
+  if (type === 'title') {
+    const { title } = options
+
+    return list.sort((a, b) => {
+      if (a[title] < b[title]) {
+        return -1
+      }
+      if (a[title] > b[title]) {
+        return 1
+      }
+      return 0
+    })
+  }
+  return list
+}

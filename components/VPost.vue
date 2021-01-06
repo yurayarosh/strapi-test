@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import language from '@/mixins/language'
-import { getPostTitle } from '@/assets/scripts/helpers'
+import language from '~/mixins/language'
+import { getPostTitle } from '~/assets/scripts/helpers'
 
 export default {
   name: 'VPost',

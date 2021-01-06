@@ -11,15 +11,17 @@
         <img
           v-if="imgUrl"
           :src="`${imgUrl}`"
-          :alt="this.pageData.img.alternativeText"
-          :title="this.pageData.img.caption"
+          :alt="pageData.img.alternativeText"
+          :title="pageData.img.caption"
         />
 
         <p>
           <strong>{{ pageData.price | formatCurrency }}</strong>
         </p>
 
-        <v-btn v-if="cartAddButton" type="button" @click="onAddToCartBtnClick">{{ cartAddButton[`title_${LANGUAGE}`] }}</v-btn>
+        <v-btn v-if="cartAddButton" type="button" @click="onAddToCartBtnClick">{{
+          cartAddButton[`title_${LANGUAGE}`]
+        }}</v-btn>
       </div>
 
       <div v-else class="container">
@@ -30,10 +32,9 @@
 </template>
 
 <script>
-import microdata from '@/mixins/microdata'
-import head from '@/mixins/head'
-import { PRODUCTS } from '@/assets/scripts/pageTypes'
-import jsCookie from 'js-cookie'
+import microdata from '~/mixins/microdata'
+import head from '~/mixins/head'
+import { PRODUCTS } from '~/assets/scripts/pageTypes'
 
 export default {
   mixins: [microdata, head],
@@ -65,13 +66,13 @@ export default {
       })
     )[0]
   },
+  mounted() {
+    this.isLoaded = true
+  },
   methods: {
     onAddToCartBtnClick() {
       this.$store.commit('cart/add', this.pageData)
     },
-  },
-  mounted() {
-    this.isLoaded = true
   },
 }
 </script>

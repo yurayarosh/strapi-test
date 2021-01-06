@@ -19,7 +19,8 @@
 </template>
 
 <script>
-import language from '@/mixins/language'
+import language from '~/mixins/language'
+import { PRODUCTS } from '~/assets/scripts/pageTypes'
 
 export default {
   name: 'PageProducts',
@@ -36,7 +37,7 @@ export default {
     }
   },
   async created() {
-    this.products = await this.$store.dispatch('fetchCollection', { collection: 'products' })
+    this.products = await this.$store.dispatch('fetchCollection', { collection: PRODUCTS })
   },
 }
 </script>

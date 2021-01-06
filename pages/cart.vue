@@ -18,7 +18,9 @@
           </li>
         </ul>
 
-        <p class="title title--h2">Сумма: {{ price | formatCurrency }}</p>
+        <p v-if="cartAmount" class="title title--h2">
+          {{ cartAmount }} {{ price | formatCurrency }}
+        </p>
       </fragment>
 
       <p v-else class="loader">Loading...</p>
@@ -27,7 +29,7 @@
 </template>
 
 <script>
-import language from '@/mixins/language'
+import language from '~/mixins/language'
 
 export default {
   name: 'PageCart',
@@ -44,6 +46,9 @@ export default {
     },
     price() {
       return this.$store.getters['cart/price']
+    },
+    cartAmount() {
+      return this.$store.getters['cart/translations']?.[`amount_${this.LANGUAGE}`]
     },
   },
 }
