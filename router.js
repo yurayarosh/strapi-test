@@ -66,9 +66,9 @@ export async function createRouter() {
   return new Router({
     mode: 'history',
     routes: [
-      ...(await getRoutes('pages', SinglePage)),
-      ...(await getRoutes('posts', SinglePost)),
-      ...(await getRoutes('products', SingleProduct)),
+      ...(await getRoutes(PAGES, SinglePage)),
+      ...(await getRoutes(POSTS, SinglePost)),
+      ...(await getRoutes(PRODUCTS, SingleProduct)),
     ],
   })
 }

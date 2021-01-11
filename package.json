@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/sitemap": "^2.4.0",
     "axios": "^0.21.1",
     "cookieparser": "^0.1.0",
     "core-js": "^3.6.5",

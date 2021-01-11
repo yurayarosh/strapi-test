@@ -47,6 +47,7 @@ export default {
 
     this.pageData = pageData
     this.productsPage = rootPage
+    this.isLoaded = true
   },
   data() {
     return {
@@ -64,9 +65,9 @@ export default {
       return this.$store.getters['cart/translations']?.add_button
     },
   },
-  mounted() {
-    this.isLoaded = true
-  },
+  // mounted() {
+  //   this.isLoaded = true
+  // },
   methods: {
     onAddToCartBtnClick() {
       this.$store.commit('cart/add', this.pageData)

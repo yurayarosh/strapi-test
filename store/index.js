@@ -5,13 +5,23 @@ export const state = () => ({
   [PAGES]: {},
   [POSTS]: {},
   [PRODUCTS]: {},
+  productsHasBeenFetched: false,
+  postsHasBeenFetched: false,
 })
 
 export const mutations = {
-  setCollection(state, { data, collection, filter, id }) {
+  setCollection(state, { data, collection, id }) {
     if (id) {
       state[collection][id] = data      
+    } else {
+      state[collection] = data
     }
+  },
+  setProducts(state) {
+    state.productsHasBeenFetched = true
+  },
+  setPosts(state) {
+    state.postsHasBeenFetched = true
   },
 }
 
@@ -37,8 +47,12 @@ export const actions = {
       const response = await fetch(`${process.env.BASE_URL_BACK}/${collection}${filterString}`)
       return await response.json()
     } catch (error) {
-      // eslint-disable-next-line
       console.error(`Fetching "${collection}" collection error`, error)
     }
   },
+}
+
+export const getters = {
+  productsHasBeenFetched: ({ productsHasBeenFetched }) => productsHasBeenFetched,
+  postsHasBeenFetched: ({ postsHasBeenFetched }) => postsHasBeenFetched,
 }

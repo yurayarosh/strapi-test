@@ -38,7 +38,17 @@ export default {
     }
   },
   async created() {
-    this.posts = await this.$store.dispatch('fetchCollection', { collection: POSTS })
+    if (this.$store.getters.postsHasBeenFetched) {
+      this.posts = [...this.$store.state[POSTS]]
+    } else {
+      this.posts = [...await this.$store.dispatch('fetchCollection', { collection: POSTS })]
+      this.$store.commit('setCollection', {
+        data: [...this.posts],
+        collection: POSTS,
+      })
+      this.$store.commit('setPosts')
+    }
+
     sortList(this.posts, 'date')
   },
 }

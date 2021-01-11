@@ -37,7 +37,16 @@ export default {
     }
   },
   async created() {
-    this.products = await this.$store.dispatch('fetchCollection', { collection: PRODUCTS })
+    if (this.$store.getters.productsHasBeenFetched) {
+      this.products = this.$store.state[PRODUCTS]
+    } else {
+      this.products = await this.$store.dispatch('fetchCollection', { collection: PRODUCTS })
+      this.$store.commit('setCollection', {
+        data: this.products,
+        collection: PRODUCTS,
+      })
+      this.$store.commit('setProducts')
+    }
   },
 }
 </script>

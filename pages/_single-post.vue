@@ -5,13 +5,13 @@
     </div>
 
     <section class="section">
-      <div v-if="isLoaded" class="container">
+      <div class="container">
         <div class="article__inner" v-html="pageData[`text_${LANGUAGE}`]" />
       </div>
 
-      <div v-else class="container">
+      <!-- <div v-else class="container">
         Loading...
-      </div>
+      </div> -->
     </section>
   </fragment>
 </template>
@@ -32,16 +32,21 @@ export default {
 
     this.pageData = pageData
     this.postsPage = rootPage
-  },
-  data() {
-    return {
-      pageData: {},
-      postsPage: {},
-      isLoaded: false,
-    }
+    // this.isLoaded = true
   },
   mounted() {
-    this.isLoaded = true
+    setTimeout(() => {
+      console.log(this.pageData)
+    }, 2000)
   },
+  // data() {
+  //   return {
+  //     pageData: {},
+  //     postsPage: {},
+  //   }
+  // },
+  // mounted() {
+  //   this.isLoaded = true
+  // },
 }
 </script>

@@ -1,32 +1,33 @@
 // TODO: use if target: 'static' is seted.
-// import axios from 'axios'
+import axios from 'axios'
+import { PAGES, POSTS, PRODUCTS } from './assets/scripts/pageTypes'
 import { langConfig } from './assets/scripts/utils'
 
-// const getRoutes = async (collection = 'pages') => {
-//   const { default: def, languages } = langConfig
-//   const response = await axios.get(`${process.env.BASE_URL_BACK}/${collection}`)
-//   const { data: items } = response
+const getRoutes = async (collection = PAGES) => {
+  const { default: def, languages } = langConfig
+  const response = await axios.get(`${process.env.BASE_URL_BACK}/${collection}`)
+  const { data: items } = response
 
-//   const routes = []
+  const routes = []
 
-//   languages.forEach(language => {
-//     items.forEach(({ alias }) => {
-//       if (!alias) alias = ''
-//       const langName = language === 'uk' ? 'ua' : language
-//       const subdir = language === def || !langName ? '' : `/${langName}`
+  languages.forEach(language => {
+    items.forEach(({ alias }) => {
+      if (!alias) alias = ''
+      const langName = language === 'uk' ? 'ua' : language
+      const subdir = language === def || !langName ? '' : `/${langName}`
 
-//       routes.push({
-//         route: `${subdir}/${alias}`,
-//       })
-//     })
-//   })
+      routes.push({
+        route: `${subdir}/${alias}`,
+      })
+    })
+  })
 
-//   return routes
-// }
+  return routes
+}
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
-  target: 'server',
+  target: 'static',
 
   env: {
     BASE_URL: process.env.BASE_URL,
@@ -65,26 +66,26 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: ['@nuxtjs/style-resources', '@nuxtjs/dotenv'],
+  modules: ['@nuxtjs/style-resources', '@nuxtjs/dotenv', '@nuxtjs/sitemap'],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 
   router: {
     trailingSlash: false,
-    middleware: 'trailingSlashRedirect',
+    // middleware: 'trailingSlashRedirect',
   },
 
   // TODO: use if target: 'static' is seted.
-  // generate: {
-  //   async routes() {
-  //     return [
-  //       ...(await getRoutes('pages')),
-  //       ...(await getRoutes('posts')),
-  //       ...(await getRoutes('products')),
-  //     ]
-  //   },
-  // },
+  generate: {
+    async routes() {
+      return [
+        ...(await getRoutes(PAGES)),
+        ...(await getRoutes(POSTS)),
+        ...(await getRoutes(PRODUCTS)),
+      ]
+    },
+  },
 
   pwa: {
     icon: {
@@ -100,5 +101,9 @@ export default {
     //   cachingExtensions: '~/plugins/workbox-sync.js',
     //   enabled: true //should be off actually per workbox docs due to complications when used in prod
     // },
-  }
+  },
+
+  sitemap: {
+    hostname: process.env.BASE_URL,
+  },
 }
