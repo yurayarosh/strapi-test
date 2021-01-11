@@ -38,7 +38,7 @@ export const actions = {
       return await response.json()
     } catch (error) {
       // eslint-disable-next-line
-      console.error(`Fetching "${colection}" collection error`, error)
+      console.error(`Fetching "${collection}" collection error`, error)
     }
   },
 }

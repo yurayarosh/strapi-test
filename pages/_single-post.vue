@@ -19,21 +19,19 @@
 <script>
 import microdata from '~/mixins/microdata'
 import head from '~/mixins/head'
-import { POSTS } from '~/assets/scripts/pageTypes'
+import fetchDynamicPage from '~/assets/scripts/fetchDynamicPage'
+import { PAGES, POSTS } from '~/assets/scripts/pageTypes'
 
 export default {
   mixins: [microdata, head],
   async fetch() {
-    this.pageData = await this.$store.dispatch('fetchCollection', {
-      collection: 'posts',
-      id: this.$route.meta.id,
+    const { pageData, rootPage } = await fetchDynamicPage({
+      ctx: this,
+      collection: POSTS,
     })
-    this.postsPage = (
-      await this.$store.dispatch('fetchCollection', {
-        collection: 'pages',
-        filter: { alias: POSTS },
-      })
-    )[0]
+
+    this.pageData = pageData
+    this.postsPage = rootPage
   },
   data() {
     return {

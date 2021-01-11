@@ -75,7 +75,12 @@ export default {
       })
     }
 
-    this.feedbackForm = await this.$store.dispatch('form/fetchFeedbackForm')
+    if (this.$store.getters['form/feedbackForm']) {
+      this.feedbackForm = this.$store.getters['form/feedbackForm']
+    } else {
+      this.feedbackForm = await this.$store.dispatch('form/fetchFeedbackForm')
+      this.$store.commit('form/setFeedbackForm', this.feedbackForm)
+    }
   },
 }
 </script>

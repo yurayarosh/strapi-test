@@ -34,21 +34,19 @@
 <script>
 import microdata from '~/mixins/microdata'
 import head from '~/mixins/head'
-import { PRODUCTS } from '~/assets/scripts/pageTypes'
+import fetchDynamicPage from '~/assets/scripts/fetchDynamicPage'
+import { PAGES, PRODUCTS } from '~/assets/scripts/pageTypes'
 
 export default {
   mixins: [microdata, head],
   async fetch() {
-    this.pageData = await this.$store.dispatch('fetchCollection', {
-      collection: 'products',
-      id: this.$route.meta.id,
+    const { pageData, rootPage } = await fetchDynamicPage({
+      ctx: this,
+      collection: PRODUCTS,
     })
-    this.productsPage = (
-      await this.$store.dispatch('fetchCollection', {
-        collection: 'pages',
-        filter: { alias: PRODUCTS },
-      })
-    )[0]
+
+    this.pageData = pageData
+    this.productsPage = rootPage
   },
   data() {
     return {

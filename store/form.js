@@ -1,3 +1,14 @@
+export const state = () => ({
+  form: {},
+  feedbackForm: null,
+})
+
+export const mutations = {
+  setFeedbackForm(state, data) {
+    state.feedbackForm = data
+  },
+}
+
 export const actions = {
   async fetchForms() {
     try {
@@ -23,4 +34,8 @@ export const actions = {
       console.error('Fetching feedback form error', error)
     }
   },
+}
+
+export const getters = {
+  feedbackForm: ({ feedbackForm }) => feedbackForm,
 }
