@@ -24,8 +24,8 @@ export default {
       }
 
       let currentNavItem
-      if (pageType === PAGE && this.$store.getters['pages/navList']) {
-        ;[currentNavItem] = this.$store.getters['pages/navList'].filter(
+      if (pageType === PAGE && this.$store.getters['navigation/navList']) {
+        currentNavItem = this.$store.getters['navigation/navList'].find(
           ({ page: { id } }) => id === this.$route.meta.id
         )
       } else if (this.pageData) {
@@ -33,7 +33,7 @@ export default {
       }
 
       const list = parents.map(page => {
-        const navItem = this.$store.getters['pages/navList']?.filter(
+        const navItem = this.$store.getters['navigation/navList']?.filter(
           ({ id }) => id === page.nav_item || id === page.nav_item.id
         )[0]
 

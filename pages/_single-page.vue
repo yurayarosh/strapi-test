@@ -26,7 +26,7 @@ import PageProducts from '~/pages/catalog'
 import PageCart from '~/pages/cart'
 import Page from '~/pages/page'
 import head from '~/mixins/head'
-import { POSTS, PRODUCTS, CART } from '~/assets/scripts/pageTypes'
+import { POSTS, PRODUCTS, CART, PAGES } from '~/assets/scripts/pageTypes'
 
 export default {
   name: 'SinglePage',
@@ -59,10 +59,22 @@ export default {
     },
   },
   async created() {
-    this.pageData = await this.$store.dispatch('fetchCollection', {
-      collection: 'pages',
-      id: this.$route.meta.id,
-    })
+    const pageId = this.$route.meta.id
+
+    if (this.$store.state[PAGES][pageId]) {
+      this.pageData = this.$store.state[PAGES][pageId]
+    } else {
+      this.pageData = await this.$store.dispatch('fetchCollection', {
+        collection: PAGES,
+        id: pageId,
+      })
+      this.$store.commit('setCollection', {
+        data: this.pageData,
+        collection: PAGES,
+        id: pageId,
+      })
+    }
+
     this.feedbackForm = await this.$store.dispatch('form/fetchFeedbackForm')
   },
 }

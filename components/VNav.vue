@@ -46,8 +46,8 @@ export default {
     },
   },
   async fetch() {
-    await this.$store.dispatch('pages/fetchNavList')
-    this.nav = this.$store.getters['pages/navList']
+    await this.$store.dispatch('navigation/fetchNavList')
+    this.nav = this.$store.getters['navigation/navList']
   },
   methods: {
     addHomeNavItem(i) {

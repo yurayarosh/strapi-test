@@ -1,6 +1,19 @@
+import { PAGES, POSTS, PRODUCTS } from "~/assets/scripts/pageTypes"
+
 export const state = () => ({
   isLoaded: false,
+  [PAGES]: {},
+  [POSTS]: {},
+  [PRODUCTS]: {},
 })
+
+export const mutations = {
+  setCollection(state, { data, collection, filter, id }) {
+    if (id) {
+      state[collection][id] = data      
+    }
+  },
+}
 
 export const actions = {
   async fetchCollection(ctx, { collection = '', filter, id }) {
