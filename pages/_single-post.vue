@@ -24,7 +24,7 @@ import { PAGES, POSTS } from '~/assets/scripts/pageTypes'
 
 export default {
   mixins: [microdata, head],
-  async fetch() {
+  async created() {
     const { pageData, rootPage } = await fetchDynamicPage({
       ctx: this,
       collection: POSTS,

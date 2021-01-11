@@ -71,10 +71,10 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 
-  router: {
-    trailingSlash: false,
-    // middleware: 'trailingSlashRedirect',
-  },
+  // router: {
+  //   trailingSlash: false,
+  //   // middleware: 'trailingSlashRedirect',
+  // },
 
   // TODO: use if target: 'static' is seted.
   generate: {

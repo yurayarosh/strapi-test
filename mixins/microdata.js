@@ -134,7 +134,7 @@ export default {
               {
                 '@context': 'http://schema.org',
                 '@type': 'ImageObject',
-                url: `${process.env.BASE_URL_BACK}${this.pageData.img?.url}`,
+                url: this.pageData.img?.url,
                 height: this.pageData.img?.height,
                 width: this.pageData.img?.width,
               },
