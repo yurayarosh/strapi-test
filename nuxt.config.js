@@ -26,13 +26,15 @@ const getRoutes = async (collection = PAGES) => {
 }
 
 export default {
-  // Target (https://go.nuxtjs.dev/config-target)
-  target: 'static',
-
+  // Define environment variables that are required at build time: https://nuxtjs.org/docs/2.x/directory-structure/nuxt-config#env
   env: {
     BASE_URL: process.env.BASE_URL,
     BASE_URL_BACK: process.env.BASE_URL_BACK,
+    CONFIG_TARGET: process.env.CONFIG_TARGET,
   },
+
+  // Target (https://go.nuxtjs.dev/config-target)
+  target: process.env.CONFIG_TARGET || 'static',
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
