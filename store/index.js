@@ -1,4 +1,4 @@
-import { PAGES, POSTS, PRODUCTS } from "~/assets/scripts/pageTypes"
+import { PAGES, POSTS, PRODUCTS } from '~/assets/scripts/pageTypes'
 
 export const state = () => ({
   isLoaded: false,
@@ -12,7 +12,7 @@ export const state = () => ({
 export const mutations = {
   setCollection(state, { data, collection, id }) {
     if (id) {
-      state[collection][id] = data      
+      state[collection][id] = data
     } else {
       state[collection] = data
     }
